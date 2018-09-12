@@ -1,0 +1,88 @@
+﻿@model WebApp.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserPass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserPass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRelease)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRelease)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserBio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserBio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Links)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Links)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<h4>List of posts</h4>
+
+@foreach (var post in Model.Posts)
+{
+    <p>@post.PostTitle</p>
+}
+
+<h4>List of products</h4>
+
+@foreach (var product in Model.Products)
+{
+    <p>@product.ProductName</p>
+}

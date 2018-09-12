@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<WebApp.Models.Post>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Posts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            @Html.ActionLink("Post Modified", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            Comments
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.PostTitle, "Edit", new { id = item.PostID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentCount)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber ) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
