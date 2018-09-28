@@ -1,8 +1,19 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<h3>Leave the comment</h3>
+
+<form class="contact" action="">
+    <p>Please fill in this form if you have any comment about our sites.</p>
+    <hr>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Your Email" name="email" required>
+
+    <label for="comment"><b>Comment</b></label>
+    <textarea placeholder="Your Comment" name="comment" required rows="10"></textarea>
+    <hr>
+    <button type="submit" class="submit">Summit</button>
+</form>
+
+<h3>Or You can contact with us by follow:</h3>
 
 <address>
     One Microsoft Way<br />

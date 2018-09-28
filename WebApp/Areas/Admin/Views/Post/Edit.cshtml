@@ -42,14 +42,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PostModified, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostModified, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostModified, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.PostFormat, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.PostFormat, htmlAttributes: new { @class = "form-control" })
@@ -70,14 +62,6 @@
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => model.CommentStatus, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CommentStatus, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CommentCount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CommentCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CommentCount, "", new { @class = "text-danger" })
             </div>
         </div>
 

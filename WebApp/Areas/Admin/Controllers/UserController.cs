@@ -143,7 +143,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             var userToUpdate = db.Users.Find(id);
 
-            if (TryUpdateModel(userToUpdate, "", new string[] { "UserName", "UserPass", "UserRelease", "UserBio", "Email", "Url", "Links" }))
+            if (TryUpdateModel(userToUpdate, "", new string[] { "UserPass", "UserBio", "Email", "Url", "Links" }))
             {
                 db.Entry(userToUpdate).State = EntityState.Modified;
                 db.SaveChanges();

@@ -145,7 +145,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             var productToUpdate = db.Products.Find(id);
 
-            if (TryUpdateModel(productToUpdate, "", new string[] { "ProductID", "ProductName", "ProductInfo", "ProductRelease", "ProductModified", "ProductStatus", "Price", "UserID" }))
+            if (TryUpdateModel(productToUpdate, "", new string[] { "ProductName", "ProductInfo", "ProductModified", "ProductStatus", "Price" }))
             {
                 try
                 {

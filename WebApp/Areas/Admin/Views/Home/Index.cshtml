@@ -1,7 +1,166 @@
-﻿
+﻿@model WebApp.Areas.Admin.Models.DBTable
+
 @{
     ViewBag.Title = "Dashboard";
 }
 
 <h2>Dashboard</h2>
 
+<h4>Products</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Product Name
+        </th>
+        <th>
+            Info
+        </th>
+        <th>
+            Product Modified
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.ProductName, "Edit", "Product", new { id = item.ProductID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Product", new { id = item.ProductID }, null) |
+                @Html.ActionLink("Delete", "Delete", "Product", new { id = item.ProductID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>Posts</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Post Modified
+        </th>
+        <th>
+            Comments
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Posts)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.PostTitle, "Edit", "Post", new { id = item.PostID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentCount)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Post", new { id = item.PostID }, null) |
+                @Html.ActionLink("Delete", "Delete", "Post", new { id = item.PostID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>Users</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            User Name
+        </th>
+        <th>
+            Bio
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            User Registered
+        </th>
+        <th>
+            Url
+        </th>
+        <th>
+            Meta Links
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.UserName, "Edit", "User", new { id = item.UserID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserBio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRelease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Links)
+            </td>
+            <td>
+                @Html.ActionLink("Review", "Details", "User", new { id = item.UserID }, null) |
+                @Html.ActionLink("Delete", "Delete", "User", new { id = item.UserID }, null)
+            </td>
+        </tr>
+    }
+
+</table>

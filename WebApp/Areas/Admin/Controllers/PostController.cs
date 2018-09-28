@@ -145,7 +145,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             var postToUpdate = db.Posts.Find(id);
 
-            if (TryUpdateModel(postToUpdate, "", new string[] { "PostName", "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus", "CommentCount", "UserID" }))
+            if (TryUpdateModel(postToUpdate, "", new string[] { "PostName", "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus" }))
             {
                 postToUpdate.PostModified = DateTime.Now;
 

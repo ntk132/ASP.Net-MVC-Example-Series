@@ -1,42 +1,97 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Admin</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - Admin</title>
+	<!-- Special Script for Layout -->
+
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Web App", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Posts", "Index", "Post")</li>
-                    <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                    <li>@Html.ActionLink("Users", "Index", "User")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Web App", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li>@Html.ActionLink("Posts", "Index", "Post")</li>
+					<li>@Html.ActionLink("Products", "Index", "Product")</li>
+					<li>@Html.ActionLink("Users", "Index", "User")</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">New<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li>@Html.ActionLink("New Post", "Create", "Post")</li>
+							<li>@Html.ActionLink("New Product", "Create", "Product")</li>
+							<li>@Html.ActionLink("New User", "Create", "User")</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-        </footer>
-    </div>
+	<div class="">
+		<div class="widget">
+			<ul>
+				<li>
+					<button class="dropdown-btn">
+						<i class="fa fa-thumb-tack"></i>
+						<span>Posts</span>
+					</button>
+					<ul class="dropdown-content">
+						<li>@Html.ActionLink("All Posts", "Index", "Post")</li>
+						<li>@Html.ActionLink("Add New", "Create", "Post")</li>
+					</ul>
+				</li>
+				<li>
+					<button class="dropdown-btn">
+						<i class="fa fa-archive"></i>
+						<span>Products</span>
+					</button>
+					<ul class="dropdown-content">
+						<li>@Html.ActionLink("All Products", "Index", "Product")</li>
+						<li>@Html.ActionLink("Add New", "Create", "Product")</li>
+					</ul>
+				</li>
+				<li>
+					<button class="dropdown-btn">
+						<i class="fa fa-users"></i>
+						<span>Users</span>
+					</button>
+					<ul class="dropdown-content">
+						<li>@Html.ActionLink("All Users", "Index", "User")</li>
+						<li>@Html.ActionLink("Add New", "Create", "User")</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<button class="dropdown-toggle" type="button" data-toggle="dropdown">New<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#">HTML</a></li>
+						<li><a href="#">CSS</a></li>
+						<li><a href="#">JavaScript</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+		<div class="mainboard">
+			@RenderBody()
+		</div>
+
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/page")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
 </body>
 </html>
