@@ -16,62 +16,48 @@
     <p>
         @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
+		<div class="dropdown">
+			<button class="dropdown-toggle" data-toggle="dropdown">Filter</button>
+			<ul class="dropdown-menu">
+				<li>@Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.NameSortParm })</li>
+				<li>@Html.ActionLink("Product Modified", "Index", new { sortOrder = ViewBag.DateSortParm })</li>
+			</ul>
+		</div>
     </p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>
-        <th>
-            Info
-        </th>
-        <th>
-            @Html.ActionLink("Product Modified", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
-        <th>
-            Author
-        </th>
-        <th>
-            Status
-        </th>
-        <th>
-            Price
-        </th>
-        <th></th>
-    </tr>
+<div class="row card-list">
+	@foreach (var item in Model)
+	{
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+			<div class="card">
+				<div class="card-header">
+					<h2>@Html.ActionLink(item.ProductName, "Details", new { id = item.ProductID })</h2>
+				</div>
+				<div class="card-content">
+					<p class="title">$@Html.DisplayFor(modelItem => item.Price)</p>
+					<p>@Html.DisplayFor(modelItem => item.ProductInfo)</p>
+				</div>
+				<div class="card-meta">
+					<p>@Html.DisplayFor(modelItem => item.ProductModified)</p>
+				</div>
+				@{
+					string status = "";
+					if (item.ProductStatus.ToString() == "SoldOut")
+					{
+						status = "soldout";
+					}
+					else
+					{
+						status = "available";
+					}
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductInfo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductModified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
-            </td>
-        </tr>
-    }
-
-</table>
+					<p class="@status">@Html.DisplayFor(modelItem => item.ProductStatus)</p>
+				}
+			</div>
+		</div>
+	}
+</div>
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber ) of @Model.PageCount

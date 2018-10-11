@@ -1,11 +1,5 @@
 ﻿@model WebApp.Models.Post
 
-@{
-    ViewBag.Title = "Details";
-}
-
-<h2>Details</h2>
-
 <div>
     <h4>Post</h4>
     <hr />
@@ -91,8 +85,22 @@
         </dd>
 
     </dl>
+
+	<div class="single post">
+		<div class="post-header">
+			@Html.DisplayFor(model => model.PostTitle)
+		</div>
+		<div class="post-content">
+			@Html.DisplayFor(model => model.PostContent)
+		</div>
+		<div class="post-meta">
+			<p>@Html.DisplayFor(model => model.PostFormat)</p>
+			<p>@Html.DisplayFor(model => model.PostRelease)</p>
+			<p>@Html.DisplayFor(model => model.CommentCount) Comments</p>
+		</div>
+	</div>
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

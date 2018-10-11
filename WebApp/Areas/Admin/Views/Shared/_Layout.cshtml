@@ -7,8 +7,9 @@
 	<!-- Special Script for Layout -->
 
 	@Styles.Render("~/Content/css")
+	@Styles.Render("~/Admin/css")
 	@Scripts.Render("~/bundles/modernizr")
-	
+
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,11 +24,9 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Posts", "Index", "Post")</li>
-					<li>@Html.ActionLink("Products", "Index", "Product")</li>
-					<li>@Html.ActionLink("Users", "Index", "User")</li>
+					<li>@Html.ActionLink("Vitsit Site", "Index", "Home", new { area = ""}, null)</li>
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">New<span class="caret"></span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown">+</a>
 						<ul class="dropdown-menu">
 							<li>@Html.ActionLink("New Post", "Create", "Post")</li>
 							<li>@Html.ActionLink("New Product", "Create", "Product")</li>
@@ -70,14 +69,6 @@
 					<ul class="dropdown-content">
 						<li>@Html.ActionLink("All Users", "Index", "User")</li>
 						<li>@Html.ActionLink("Add New", "Create", "User")</li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<button class="dropdown-toggle" type="button" data-toggle="dropdown">New<span class="caret"></span></button>
-					<ul class="dropdown-menu">
-						<li><a href="#">HTML</a></li>
-						<li><a href="#">CSS</a></li>
-						<li><a href="#">JavaScript</a></li>
 					</ul>
 				</li>
 			</ul>

@@ -9,71 +9,47 @@
 
 <h2>Users</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 @using (Html.BeginForm())
 {
     <p>
         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
+		<div class="dropdown">
+			<button class="dropdown-toggle" data-toggle="dropdown">Filter</button>
+			<ul class="dropdown-menu">
+				<li>@Html.ActionLink("User Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })</li>
+				<li>@Html.ActionLink("User Registered", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })</li>
+			</ul>
+		</div>
     </p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("User Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            Bio
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            @Html.ActionLink("User Registered", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            Url
-        </th>
-        <th>
-            Meta Links
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserBio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserRelease)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Links)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-        </td>
-    </tr>
-    }
-
-</table>
+<div class="row card-list">
+	@foreach (var item in Model)
+	{
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+			<div class="card">
+				@{
+					string src = "/Images/Avatar/team" + @item.UserID + ".jpg";
+					<img src="@src" alt="" style="width: 100%" />
+				}
+				<div class="cart-header">
+					<h2>@Html.ActionLink(item.UserName, "Details", new { id = item.UserID })</h2>
+				</div>
+				<div class="cart-content">
+					<p class="title"></p>
+					<p>@Html.DisplayFor(modelItem => item.UserBio)</p>
+					<p>@Html.DisplayFor(modelItem => item.Email)</p>
+				</div>
+				<div class="cart-meta">
+					<p>@Html.DisplayFor(modelItem => item.UserRelease)</p>
+					<p>@Html.DisplayFor(modelItem => item.Links)</p>
+				</div>
+				<p><button>Contact</button></p>
+			</div>			
+		</div>
+	}
+</div>
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber ) of @Model.PageCount

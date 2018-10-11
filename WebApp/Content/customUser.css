@@ -1,0 +1,99 @@
+﻿/*===========================================================================*/
+/*=============================== Page About ================================*/
+
+/*===========================================================================*/
+/*=============================== Page Contact ================================*/
+.contact {
+    padding: 25px;
+}
+
+.contact input,
+.contact textarea,
+.contact button {
+    width: 100%;
+    padding: 15px;
+    display: inline-block;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+}
+
+    .contact input:hover,
+    .contact textarea:hover {
+        background-color: #ddd;
+    }
+
+.contact .submit {
+    background-color: #1A3E4C;
+    color: #fff;
+}
+
+
+/*--------[User card - Portfolio]--------*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: auto;
+    text-align: center;
+    margin: 10px;
+    transition: box-shadow 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4);
+}
+.card:hover img {
+    filter: brightness(100%);
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.card a {
+    text-decoration: none;
+}
+
+.card .title {
+    color: grey;
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+.card img {
+    filter: brightness(50%);
+    transition: filter 0.3s;
+}
+
+.card button {
+    border: none;
+    outline: none;
+    display: inline-block;
+    background-color: #111;
+    color: #eee;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.card button:hover {
+    opacity: 0.75;
+}
+
+.card .soldout,
+.card .available {
+    text-align: center;
+    width: 100%;
+    padding: 5px 0;
+    color: #eee;
+}
+
+.card .soldout {
+    background-color: #ff4d4d;
+}
+
+.card .available {
+    background-color: #47d147;
+}

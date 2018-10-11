@@ -1,0 +1,17 @@
+﻿*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/**/
+.option-bar {
+    background-color: #1A3E4C;
+}

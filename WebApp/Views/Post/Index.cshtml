@@ -16,56 +16,35 @@
     <p>
         @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
+		<div class="dropdown">
+			<button class="dropdown-toggle" data-toggle="dropdown">Filter</button>
+			<ul class="dropdown-menu">
+				<li>@Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })</li>
+				<li>@Html.ActionLink("Post Modified", "Index", new { sortOrder = ViewBag.DateSortParm })</li>
+			</ul>
+		</div>
     </p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>
-        <th>
-            Author
-        </th>
-        <th>
-            Status
-        </th>
-        <th>
-            @Html.ActionLink("Post Modified", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
-        <th>
-            Comments
-        </th>
-        <th></th>
-    </tr>
+<div class="row card-list">
+	@foreach (var item in Model)
+	{
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			<div class="card">
+				<div class="card-header">
+					@Html.ActionLink(item.PostTitle, "Details", new { id = item.PostID })
+				</div>
+				<div class="card-content">
 
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostModified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommentCount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
-        </td>
-    </tr>
-    }
-
-</table>
+				</div>
+				<div class="card-meta">
+					<p>@Html.DisplayFor(modelItem => item.PostModified)</p>
+					<p>@Html.DisplayFor(modelItem => item.CommentCount)</p>
+				</div>
+			</div>			
+		</div>
+	}		
+</div>
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber ) of @Model.PageCount

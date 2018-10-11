@@ -28,9 +28,15 @@ namespace WebApp
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/fontawesome.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/fontawesome.min.css",
+                      "~/Content/customWebApp.css"));
+
+            bundles.Add(new StyleBundle("~/Admin/css").Include(
+                      "~/Content/customAdmin.css"));
+
+            bundles.Add(new StyleBundle("~/User/css").Include(
+                      "~/Content/customUser.css"));
         }
     }
 }
