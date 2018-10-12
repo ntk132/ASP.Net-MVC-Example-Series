@@ -6,6 +6,7 @@
 	<title>@ViewBag.Title - Admin</title>
 	<!-- Special Script for Layout -->
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	@Styles.Render("~/Content/css")
 	@Styles.Render("~/Admin/css")
 	@Scripts.Render("~/bundles/modernizr")
@@ -41,7 +42,7 @@
 	<div class="">
 		<div class="widget">
 			<ul>
-				<li>
+				<li id="post">
 					<button class="dropdown-btn">
 						<i class="fa fa-thumb-tack"></i>
 						<span>Posts</span>
@@ -51,7 +52,7 @@
 						<li>@Html.ActionLink("Add New", "Create", "Post")</li>
 					</ul>
 				</li>
-				<li>
+				<li id="product">
 					<button class="dropdown-btn">
 						<i class="fa fa-archive"></i>
 						<span>Products</span>
@@ -61,7 +62,7 @@
 						<li>@Html.ActionLink("Add New", "Create", "Product")</li>
 					</ul>
 				</li>
-				<li>
+				<li id="user">
 					<button class="dropdown-btn">
 						<i class="fa fa-users"></i>
 						<span>Users</span>

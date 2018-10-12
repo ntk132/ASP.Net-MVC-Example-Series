@@ -11,7 +11,17 @@ a {
     text-decoration: none;
 }
 
-/**/
-.option-bar {
-    background-color: #1A3E4C;
+img {
+    width:100%;
+}
+
+input[type="submit"],
+button {
+    border: none;
+    outline: none;
+    background: inherit;
+}
+
+.fa {
+    color: #333;
 }

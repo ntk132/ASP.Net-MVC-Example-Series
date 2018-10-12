@@ -196,3 +196,9 @@ C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.csproj.
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.dll
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.pdb
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.InitialCreate.resources
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.csproj.GenerateResource.cache
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.InitialCreate1.resources
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.InitialCreate2.resources
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.InitialCreate3.resources
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.InitialCreate4.resources

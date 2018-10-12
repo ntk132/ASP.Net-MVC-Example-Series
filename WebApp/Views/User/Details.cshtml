@@ -1,87 +1,95 @@
 ﻿@model WebApp.Models.User
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+	<h4>User</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.UserName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.UserName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserPass)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.UserPass)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserPass)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.UserPass)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserRelease)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.UserRelease)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserRelease)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.UserRelease)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserBio)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.UserBio)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserBio)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.UserBio)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Url)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Url)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Links)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.Links)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Links)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.Links)
+		</dd>
 
-    </dl>
+	</dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to List", "Index")
 </p>
+
+@foreach (var meta in Model.UserMetas)
+{
+	if (meta.MetaKey.ToString() == "avatar")
+	{
+		<img src="@meta.MetaValue" />
+	}
+}
 
 <h4>List of posts</h4>
 
 @foreach (var post in Model.Posts)
 {
-    <p>@post.PostTitle</p>
+	<p>@post.PostTitle</p>
 }
 
 <h4>List of products</h4>
 
 @foreach (var product in Model.Products)
 {
-    <p>@product.ProductName</p>
+	<p>@product.ProductName</p>
 }

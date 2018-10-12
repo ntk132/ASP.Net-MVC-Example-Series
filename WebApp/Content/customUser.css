@@ -28,6 +28,67 @@
     color: #fff;
 }
 
+/*--------[Option Bar]--------*/
+.option-bar {
+   text-align:center;
+   padding:15px;
+}
+
+.option-bar input[type="text"] {
+    float:left;
+    outline:none;
+    padding: 5px 15px;
+    border:none;
+    background: #ddd;
+    width:80%;
+    border-top-left-radius: 15px 15px;
+    border-bottom-left-radius: 15px 15px;
+}
+
+.option-bar button[type="submit"] {
+    float:left;
+    background: #ccc;
+    width:20%;
+    padding: 5px;
+    border-top-right-radius: 15px 15px;
+    border-bottom-right-radius: 15px 15px;
+}
+
+.option-bar input[type="text"],
+.option-bar button[type="submit"] {
+    margin:10px 0;
+}
+
+.option-bar button:not([type="submit"]) {
+    padding: 15px;
+}
+
+.option-bar button:not([type="submit"]):hover {
+    background: #ccc;
+}
+
+.option-bar .dropdown-menu {
+    text-align: left;
+    vertical-align:central !important;
+    left:calc(50% - 20px);
+    border-radius:0px;
+    padding:0px;
+}
+
+.option-bar .dropdown-menu > li a {
+    padding:10px;
+}
+
+.option-bar .dropdown-menu > li a:hover {
+    background: #ccc;
+    color: #333;
+}
+
+.option-bar::after {
+    content:"";
+    clear:both;
+    display:table;
+}
 
 /*--------[User card - Portfolio]--------*/
 .card {
@@ -35,13 +96,13 @@
     margin: auto;
     text-align: center;
     margin: 10px;
+    filter: brightness(50%);
+    transition: filter 0.3s;
     transition: box-shadow 0.3s;
 }
 
 .card:hover {
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4);
-}
-.card:hover img {
     filter: brightness(100%);
 }
 
@@ -59,11 +120,6 @@
     color: grey;
     font-size: 25px;
     padding: 10px 0;
-}
-
-.card img {
-    filter: brightness(50%);
-    transition: filter 0.3s;
 }
 
 .card button {

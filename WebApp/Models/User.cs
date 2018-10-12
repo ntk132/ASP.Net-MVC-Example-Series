@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,10 @@ namespace WebApp.Models
         public int UserID { get; set; }
         public string UserName { get; set; }
         public string UserPass { get; set; }
+
+        [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyyy}", ApplyFormatInEditMode = true)]
         public DateTime UserRelease { get; set; }
         public string UserBio { get; set; }
         public string Email { get; set; }
@@ -18,5 +23,6 @@ namespace WebApp.Models
 
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<UserMeta> UserMetas { get; set; }
     }
 }

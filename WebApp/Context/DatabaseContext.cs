@@ -17,6 +17,9 @@ namespace WebApp.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<UserMeta> UserMetas { get; set; }
+        public DbSet<PostMeta> PostMetas { get; set; }
+        public DbSet<ProductMeta> ProductMetas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

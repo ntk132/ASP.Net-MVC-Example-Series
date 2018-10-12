@@ -57,6 +57,10 @@
     border-left-color: #1A3E4C;
 }
 
+.selected + .dropdown-content {
+    display:block;
+}
+
 .selected:after {
     content: "\25b2";
 }
@@ -70,9 +74,9 @@
 .dropdown-content {
     padding: 0 20px;
     background-color: #fff;
-    max-height: 0;
+    display:none;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
+    transition: display 0.2s ease-out;
 }
 
 .dropdown-content a {

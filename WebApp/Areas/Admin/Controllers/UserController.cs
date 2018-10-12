@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using WebApp.Context;
 using WebApp.Models;
 
@@ -134,7 +135,7 @@ namespace WebApp.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser(int? id)
+        public ActionResult EditUser(int? id, FormCollection formCollection)
         {
             if (id == null)
             {
@@ -143,8 +144,15 @@ namespace WebApp.Areas.Admin.Controllers
 
             var userToUpdate = db.Users.Find(id);
 
+            var array = new string[] { Request.Form["fb"], Request.Form["yt"], Request.Form["ins"], Request.Form["globe"] };
+            var newArray = array.Select(x => new { link = x }).ToArray();
+
+            var serializer = new JavaScriptSerializer();
+            var json = serializer.Serialize(newArray);
+
             if (TryUpdateModel(userToUpdate, "", new string[] { "UserPass", "UserBio", "Email", "Url", "Links" }))
             {
+                userToUpdate.Links = json;
                 db.Entry(userToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

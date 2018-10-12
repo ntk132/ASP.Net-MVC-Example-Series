@@ -34,7 +34,7 @@ namespace WebApp.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var users = from u in db.Users select u;
+            var users = from u in db.Users.Include(u => u.UserMetas) select u;
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -71,12 +71,15 @@ namespace WebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //User user = db.Users.Find(id);
-            var user = db.Users.Include(u => u.Posts).Where(p => p.UserID == id.Value)
+            var user = db.Users
+                .Include(u => u.UserMetas).Where(m => m.UserID == id.Value)
+                .Include(u => u.Posts).Where(p => p.UserID == id.Value)
                 .Include(u => u.Products).Where(p => p.UserID == id.Value).Single();
             if (user == null)
             {
                 return HttpNotFound();
             }
+
             return View(user);
         }
 

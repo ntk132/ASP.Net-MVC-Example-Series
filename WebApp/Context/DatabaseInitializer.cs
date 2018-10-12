@@ -24,6 +24,18 @@ namespace WebApp.Context
             users.ForEach(u => context.Users.Add(u));
             context.SaveChanges();
 
+            var usermetas = new List<UserMeta>
+            {
+                new UserMeta { UserID=1, MetaKey="avatar", MetaValue="/Images/Avatar/team1.jpg"},
+                new UserMeta { UserID=2, MetaKey="avatar", MetaValue="/Images/Avatar/team2.jpg"},
+                new UserMeta { UserID=3, MetaKey="avatar", MetaValue="/Images/Avatar/team3.jpg"},
+                new UserMeta { UserID=4, MetaKey="avatar", MetaValue="/Images/Avatar/team4.jpg"},
+                new UserMeta { UserID=5, MetaKey="avatar", MetaValue="/Images/Avatar/team5.jpg"},
+            };
+
+            usermetas.ForEach(u => context.UserMetas.Add(u));
+            context.SaveChanges();
+
             var posts = new List<Post>
             {
                 new Post { PostName="", PostTitle="Lesson 1: ", PostContent="No matter which side of the “are blogs social media?” debate you fall on, it’s a good idea to share your blog posts on your social networks. You don’t have to limit yourself to new posts either. Sharing older, but popular posts can help you get more mileage out of existing content.", PostRelease=DateTime.Now, PostModified=DateTime.Now, PostFormat=PostFormat.Standard, PostStatus=PostStatus.Publish, CommentStatus=CommentStatus.Open, CommentCount=0, UserID=1},
@@ -35,6 +47,19 @@ namespace WebApp.Context
             };
 
             posts.ForEach(p => context.Posts.Add(p));
+            context.SaveChanges();
+
+            var postmetas = new List<PostMeta>
+            {
+                new PostMeta { PostID=1, MetaKey="img_thumbnail", MetaValue="/Images/Food/bread.jpg"},
+                new PostMeta { PostID=2, MetaKey="img_thumbnail", MetaValue="/Images/Food/cherries.jpg"},
+                new PostMeta { PostID=3, MetaKey="img_thumbnail", MetaValue="/Images/Food/salmon.jpg"},
+                new PostMeta { PostID=4, MetaKey="img_thumbnail", MetaValue="/Images/Food/wine.jpg"},
+                new PostMeta { PostID=5, MetaKey="img_thumbnail", MetaValue="/Images/Food/steak.jpg"},
+                new PostMeta { PostID=6, MetaKey="img_thumbnail", MetaValue="/Images/Food/popsicle.jpg"},
+            };
+
+            postmetas.ForEach(p => context.PostMetas.Add(p));
             context.SaveChanges();
 
             var products = new List<Product>
@@ -49,6 +74,8 @@ namespace WebApp.Context
 
             products.ForEach(p => context.Products.Add(p));
             context.SaveChanges();
+
+            
         }
     }
 }

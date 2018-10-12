@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -35,7 +36,15 @@ namespace WebApp.Models
         public string PostName { get; set; }
         public string PostTitle { get; set; }
         public string PostContent { get; set; }
+
+        [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyyy}", ApplyFormatInEditMode = true)]
         public DateTime PostRelease { get; set; }
+
+        [Display(Name = "Modified Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyyy}", ApplyFormatInEditMode = true)]
         public DateTime PostModified { get; set; }
         public PostFormat PostFormat { get; set; }
         public PostStatus PostStatus { get; set; }
@@ -44,5 +53,6 @@ namespace WebApp.Models
 
         public int? UserID { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<PostMeta> PostMetas { get; set; }
     }
 }

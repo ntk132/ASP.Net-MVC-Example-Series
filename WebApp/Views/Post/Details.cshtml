@@ -1,106 +1,118 @@
 ﻿@model WebApp.Models.Post
 
 <div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </dt>
+	<h4>Post</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.User.UserName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.User.UserName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PostName)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.PostName)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PostName)
-        </dd>
+		<dd>
+			@Html.DisplayFor(model => model.PostName)
+		</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PostTitle)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.PostTitle)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PostTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostContent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostContent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostRelease)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostRelease)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostModified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostModified)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostFormat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostFormat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CommentStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CommentStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CommentCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CommentCount)
-        </dd>
-
-    </dl>
-
-	<div class="single post">
-		<div class="post-header">
+		<dd>
 			@Html.DisplayFor(model => model.PostTitle)
-		</div>
-		<div class="post-content">
-			@Html.DisplayFor(model => model.PostContent)
-		</div>
-		<div class="post-meta">
-			<p>@Html.DisplayFor(model => model.PostFormat)</p>
-			<p>@Html.DisplayFor(model => model.PostRelease)</p>
-			<p>@Html.DisplayFor(model => model.CommentCount) Comments</p>
-		</div>
-	</div>
+		</dd>
 
+		<dt>
+			@Html.DisplayNameFor(model => model.PostContent)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PostContent)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.PostRelease)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PostRelease)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.PostModified)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PostModified)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.PostFormat)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PostFormat)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.PostStatus)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PostStatus)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CommentStatus)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CommentStatus)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CommentCount)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CommentCount)
+		</dd>
+
+	</dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to List", "Index")
 </p>
+
+<div class="row">
+	<div class="col-md-3">
+		@{
+			var str = Model.PostMetas.Where(m => m.MetaKey == "img_thumbnail").Single();
+			<img src="@str.MetaValue" alt="" style="width:100%;" />
+		}
+	</div>
+	<div class="col-md-9">
+		<div class="single post">
+			<div class="post-header">
+				<h3>@Html.DisplayFor(model => model.PostTitle)</h3>
+			</div>
+			<div class="post-meta">
+				<p>
+					@Html.DisplayFor(model => model.User.UserName) |
+					@Html.DisplayFor(model => model.PostRelease) |
+					@Html.DisplayFor(model => model.CommentCount) Comments
+				</p>
+			</div>
+
+			<div class="post-content">
+				@Html.DisplayFor(model => model.PostContent)
+			</div>
+		</div>
+	</div>
+</div>

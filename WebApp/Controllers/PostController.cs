@@ -34,7 +34,7 @@ namespace WebApp.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var posts = from p in db.Posts select p;
+            var posts = from p in db.Posts.Include(p => p.PostMetas) select p;
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -70,7 +70,9 @@ namespace WebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = db.Posts
+                .Include(p => p.User).Where(u => u.User.UserID == u.UserID)
+                .Include(p => p.PostMetas).Where(m => m.PostID == id.Value).Single();
             if (post == null)
             {
                 return HttpNotFound();
