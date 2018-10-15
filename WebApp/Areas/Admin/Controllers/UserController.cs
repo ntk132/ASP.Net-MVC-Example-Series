@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -127,6 +128,22 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
+            string[] result = { "", "", "", "" };
+
+            if (user.Links.ToString() != "")
+            {
+                string pattern = user.Links.ToString().Replace("\"link\":", "");
+                pattern = Regex.Replace(pattern, "[{\":}\\[\\]]", "");
+                result = pattern.Split(',');                
+            }
+
+            ViewBag.fb = result[0];
+            ViewBag.yt = result[1];
+            ViewBag.ins = result[2];
+            ViewBag.web = result[3];
+
+
             return View(user);
         }
 
@@ -144,7 +161,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             var userToUpdate = db.Users.Find(id);
 
-            var array = new string[] { Request.Form["fb"], Request.Form["yt"], Request.Form["ins"], Request.Form["globe"] };
+            var array = new string[] { Request.Form["fb"], Request.Form["yt"], Request.Form["ins"], Request.Form["web"] };
             var newArray = array.Select(x => new { link = x }).ToArray();
 
             var serializer = new JavaScriptSerializer();

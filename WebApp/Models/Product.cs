@@ -14,7 +14,11 @@ namespace WebApp.Models
     public class Product
     {
         public int ProductID { get; set; }
+
+        [Display(Name = "Product Name")]
         public string ProductName { get; set; }
+
+        [Display(Name = "Information")]
         public string ProductInfo { get; set; }
 
         [Display(Name = "Release Date")]
@@ -26,6 +30,8 @@ namespace WebApp.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyyy}", ApplyFormatInEditMode = true)]
         public DateTime ProductModified { get; set; }
+
+        [Display(Name = "Status")]
         public ProductStatus ProductStatus { get; set; }
         public decimal Price { get; set; }
 

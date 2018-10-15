@@ -97,3 +97,20 @@
 .mainboard table {
     background-color: #fff;
 }
+
+/*---------[Edit Page]--------*/
+.tab {
+    padding: 20px;
+    background:#fff;
+    box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
+    margin: 10px;
+}
+
+input[type="submit"] {
+    background:#eee;
+}
+
+input[type="submit"]:hover {
+    background: #347B98;
+    color:#fff;
+}
