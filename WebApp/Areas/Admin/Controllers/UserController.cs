@@ -129,20 +129,22 @@ namespace WebApp.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
+            // Convert Links (JSON) to array string to show multi social links
             string[] result = { "", "", "", "" };
 
             if (user.Links.ToString() != "")
             {
+                // Process the JSON to array string
                 string pattern = user.Links.ToString().Replace("\"link\":", "");
                 pattern = Regex.Replace(pattern, "[{\":}\\[\\]]", "");
                 result = pattern.Split(',');                
             }
 
+            // Store multi links to ViewBag variable for mapping to text box at edit page
             ViewBag.fb = result[0];
             ViewBag.yt = result[1];
             ViewBag.ins = result[2];
             ViewBag.web = result[3];
-
 
             return View(user);
         }
@@ -161,15 +163,19 @@ namespace WebApp.Areas.Admin.Controllers
 
             var userToUpdate = db.Users.Find(id);
 
+            /* Get the JSON from Collecting multi social links */
+            // Collect multi social link and store it to array
             var array = new string[] { Request.Form["fb"], Request.Form["yt"], Request.Form["ins"], Request.Form["web"] };
             var newArray = array.Select(x => new { link = x }).ToArray();
 
             var serializer = new JavaScriptSerializer();
-            var json = serializer.Serialize(newArray);
+            var json = serializer.Serialize(newArray); // Convert to JSON
 
             if (TryUpdateModel(userToUpdate, "", new string[] { "UserPass", "UserBio", "Email", "Url", "Links" }))
             {
+                
                 userToUpdate.Links = json;
+
                 db.Entry(userToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -194,6 +200,7 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(user);
         }
 
@@ -223,6 +230,7 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

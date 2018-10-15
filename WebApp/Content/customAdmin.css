@@ -1,7 +1,73 @@
 ﻿/*===========================================================================*/
 /*=============================== Admin Side ================================*/
 
-/*--------[Menu Dashboard]--------*/
+/*---------[Main Dashboard - Record]--------*/
+.count-bar {
+    padding:10px;
+}
+
+.count {
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding:10px;
+    margin: 10px 5px;
+}
+.left-side,
+.right-side {
+    position:relative;
+    display: inline-block;
+    max-width:50%;
+    padding: 0 20px;
+}
+.donut-chart {
+    height:60px;
+    width:60px;
+    position:relative;
+    border-radius:50%;
+    overflow:hidden;
+    background: #ccc;
+}
+
+.donut-chart .slice {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.donut-chart .chart-center {
+    position: absolute;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+}
+
+.donut-chart .chart-center span {
+    margin-top: 15px;
+    height:inherit;
+    display:block;
+    text-align:center;
+}
+
+.donut-chart .one {
+    clip: rect(0 60px 30px 0);
+    -webkit-transform: rotate(-90deg);
+    transform:rotate(-90deg);
+    background: #50c690;
+}
+
+.donut-chart .two {
+    clip: rect(0 30px 60px 0);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    background: #ccc;
+}
+    /*--------[Menu Dashboard]--------*/
 .widget {
     float: left;
     max-width: 250px;
@@ -113,4 +179,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background: #347B98;
     color:#fff;
+}
+
+button {
+    background: #ccc;
+}
+
+button:hover {
+    background: #666;
+    color: #fff;
 }

@@ -8,6 +8,8 @@
 	if: location.hash != null that actived/selected element is available
 	else: new page load
  */
+var i, j;
+
 if (localStorage.getItem("selected")) {
 	var frtChld = document.getElementById(localStorage.getItem("selected").toString()).firstElementChild;
 	frtChld.classList.toggle("selected");
@@ -52,5 +54,52 @@ function dropdown_click(e) {
 		localStorage.removeItem("selected");
 	} else {
 		localStorage.setItem("selected", this.parentNode.id);
+	}
+}
+
+/* Circle - Donut chart - dynamic chart */
+
+// percent: int -> 0-100%
+var btnRun = document.getElementById("btn-run-circle");
+
+btnRun.addEventListener("click", doClick);
+
+doClick();
+
+function doClick() {
+	j = 0;
+	var id = setInterval(runCircle, 10);
+
+	function runCircle() {
+		if (j > 100) {
+			clearInterval(id);
+		} else {
+			percent = j;
+
+			var activeColor = "#50c690";
+			var deg1 = 90;
+			var deg2 = (percent / 100 * 360);
+
+			if (percent < 50) {
+				activeColor = "#ccc";
+				deg1 = (percent / 100 * 360 - 90);
+				deg2 = 0;
+			}
+
+			var one = document.getElementsByClassName("one");
+			var two = document.getElementsByClassName("two");
+			var cnt = document.getElementsByClassName("percent");
+
+			for (i = 0; i < one.length; i++) {
+				one[i].style.transform = "rotate(" + deg1.toString() + "deg)";
+				one[i].style.webkitTransform = "rotate(" + deg1.toString() + "deg)";
+				two[i].style.backgroundColor = activeColor;
+				two[i].style.transform = "rotate(" + deg2.toString() + "deg)";
+				two[i].style.webkitTransform = "rotate(" + deg2.toString() + "deg)";
+				cnt[i].innerHTML = j + "%";
+			}
+
+			j++;
+		}
 	}
 }
