@@ -15,6 +15,7 @@ namespace WebApp.Models
     {
         public int ProductID { get; set; }
 
+        [Required]
         [Display(Name = "Product Name")]
         public string ProductName { get; set; }
 

@@ -45,6 +45,10 @@
     border-bottom-left-radius: 15px 15px;
 }
 
+.option-bar input[type="text"]:focus {
+    background:#eee;
+}
+
 .option-bar button[type="submit"] {
     float:left;
     background: #ccc;

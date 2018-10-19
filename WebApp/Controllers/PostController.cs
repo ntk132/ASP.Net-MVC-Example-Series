@@ -72,6 +72,7 @@ namespace WebApp.Controllers
             }
             Post post = db.Posts
                 .Include(p => p.User).Where(u => u.User.UserID == u.UserID)
+                .Include(p => p.Comments).Where(c => c.PostID == id.Value)
                 .Include(p => p.PostMetas).Where(m => m.PostID == id.Value).Single();
             if (post == null)
             {

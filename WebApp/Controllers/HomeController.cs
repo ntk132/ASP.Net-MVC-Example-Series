@@ -22,5 +22,84 @@ namespace WebApp.Controllers
         {
             return View();
         }
+
+        public ActionResult PageCarousel()
+        {
+            return View();
+        }
+
+        public ActionResult PageProduct()
+        {
+            return View();
+        }
+        public ActionResult PageBlog()
+        {
+            return View();
+        }
+        public ActionResult PageContact()
+        {
+            return View();
+        }
+        public ActionResult PageAbout()
+        {
+            return View();
+        }
+        public ActionResult PagePricing()
+        {
+            return View();
+        }
+        public ActionResult PageLanding()
+        {
+            return View();
+        }
+
+        public ActionResult CardBlog()
+        {
+            return View();
+        }
+        public ActionResult CardProfile()
+        {
+            return View();
+        }
+        public ActionResult CardBG()
+        {
+            return View();
+        }
+        public ActionResult CardPricing()
+        {
+            return View();
+        }
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+        public ActionResult Profile()
+        {
+            return View();
+        }
+        public ActionResult LogOut()
+        {
+            return View();
+        }
+        public ActionResult BlogPage()
+        {
+            return View();
+        }
+        public ActionResult BlogSingle()
+        {
+            return View();
+        }
+        public ActionResult ProductPage()
+        {
+            return View();
+        }
+        public ActionResult ProductSingle()
+        {
+            return View();
+        }
     }
 }

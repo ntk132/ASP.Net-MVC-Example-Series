@@ -66,6 +66,12 @@ namespace WebApp.Areas.Admin.Controllers
             return View(users.ToPagedList(pageNumber, pageSize));
         }
 
+        [HttpPost]
+        public ActionResult Index(string a)
+        {
+            return Json("NTK132");
+        }
+
         // GET: User/Details/5
         public ActionResult Details(int? id)
         {

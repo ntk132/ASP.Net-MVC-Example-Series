@@ -25,9 +25,6 @@
             @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            Info
-        </th>
-        <th>
             @Html.ActionLink("Product Modified", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
@@ -47,9 +44,6 @@
         <tr>
             <td>
                 @Html.ActionLink(item.ProductName, "Edit", new { id = item.ProductID })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductInfo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductModified)

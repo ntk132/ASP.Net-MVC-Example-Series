@@ -20,6 +20,10 @@ namespace WebApp.Context
         public DbSet<UserMeta> UserMetas { get; set; }
         public DbSet<PostMeta> PostMetas { get; set; }
         public DbSet<ProductMeta> ProductMetas { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<CommentMeta> CommentMetas { get; set; }
+        public DbSet<Term> Terms { get; set; }
+        public DbSet<TermMeta> TermMetas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

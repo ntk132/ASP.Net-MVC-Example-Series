@@ -3,11 +3,11 @@ namespace WebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initialcreate : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
+            /*CreateTable(
                 "dbo.PostMeta",
                 c => new
                     {
@@ -38,9 +38,43 @@ namespace WebApp.Migrations
                     })
                 .PrimaryKey(t => t.PostID)
                 .ForeignKey("dbo.User", t => t.UserID)
-                .Index(t => t.UserID);
+                .Index(t => t.UserID);*/
             
             CreateTable(
+                "dbo.Comment",
+                c => new
+                    {
+                        CommentID = c.Int(nullable: false, identity: true),
+                        CommentAuthor = c.String(),
+                        CommentAuthorEmail = c.String(),
+                        CommentDateReleased = c.String(),
+                        CommentDateModified = c.String(),
+                        CommentContent = c.String(),
+                        CommentType = c.Int(nullable: false),
+                        CommentParent = c.Int(nullable: false),
+                        UserID = c.Int(),
+                        PostID = c.Int(),
+                    })
+                .PrimaryKey(t => t.CommentID)
+                .ForeignKey("dbo.Post", t => t.PostID)
+                .ForeignKey("dbo.User", t => t.UserID)
+                .Index(t => t.UserID)
+                .Index(t => t.PostID);
+            
+            CreateTable(
+                "dbo.CommentMeta",
+                c => new
+                    {
+                        CommentMetaID = c.Int(nullable: false, identity: true),
+                        MetaKey = c.String(),
+                        MetaValue = c.String(),
+                        CommentID = c.Int(),
+                    })
+                .PrimaryKey(t => t.CommentMetaID)
+                .ForeignKey("dbo.Comment", t => t.CommentID)
+                .Index(t => t.CommentID);
+            
+            /*CreateTable(
                 "dbo.User",
                 c => new
                     {
@@ -96,7 +130,7 @@ namespace WebApp.Migrations
                     })
                 .PrimaryKey(t => t.UserMetaID)
                 .ForeignKey("dbo.User", t => t.UserID)
-                .Index(t => t.UserID);
+                .Index(t => t.UserID);*/
             
         }
         
@@ -107,15 +141,23 @@ namespace WebApp.Migrations
             DropForeignKey("dbo.Product", "UserID", "dbo.User");
             DropForeignKey("dbo.ProductMeta", "ProductID", "dbo.Product");
             DropForeignKey("dbo.Post", "UserID", "dbo.User");
+            DropForeignKey("dbo.Comment", "UserID", "dbo.User");
+            DropForeignKey("dbo.Comment", "PostID", "dbo.Post");
+            DropForeignKey("dbo.CommentMeta", "CommentID", "dbo.Comment");
             DropIndex("dbo.UserMeta", new[] { "UserID" });
             DropIndex("dbo.ProductMeta", new[] { "ProductID" });
             DropIndex("dbo.Product", new[] { "UserID" });
+            DropIndex("dbo.CommentMeta", new[] { "CommentID" });
+            DropIndex("dbo.Comment", new[] { "PostID" });
+            DropIndex("dbo.Comment", new[] { "UserID" });
             DropIndex("dbo.Post", new[] { "UserID" });
             DropIndex("dbo.PostMeta", new[] { "PostID" });
             DropTable("dbo.UserMeta");
             DropTable("dbo.ProductMeta");
             DropTable("dbo.Product");
             DropTable("dbo.User");
+            DropTable("dbo.CommentMeta");
+            DropTable("dbo.Comment");
             DropTable("dbo.Post");
             DropTable("dbo.PostMeta");
         }

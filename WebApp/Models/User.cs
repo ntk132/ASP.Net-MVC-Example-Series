@@ -10,9 +10,11 @@ namespace WebApp.Models
     {
         public int UserID { get; set; }
 
+        [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 
+        [Required]
         [Display(Name = "User Pass")]
         public string UserPass { get; set; }
 
@@ -30,5 +32,6 @@ namespace WebApp.Models
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<UserMeta> UserMetas { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

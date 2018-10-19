@@ -35,6 +35,7 @@ namespace WebApp.Models
         public int PostID { get; set; }
         public string PostName { get; set; }
 
+        [Required]
         [Display(Name = "Title")]
         public string PostTitle { get; set; }
 
@@ -66,5 +67,6 @@ namespace WebApp.Models
         public int? UserID { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<PostMeta> PostMetas { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace WebApp.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "WebApp.Context.DatabaseContext";
         }
 
         protected override void Seed(WebApp.Context.DatabaseContext context)

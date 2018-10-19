@@ -160,34 +160,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810110921419_InitialCreate.cs" />
-    <Compile Include="Migrations\201810110921419_InitialCreate.Designer.cs">
-      <DependentUpon>201810110921419_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201810180738189_initialcreate.cs" />
+    <Compile Include="Migrations\201810180738189_initialcreate.Designer.cs">
+      <DependentUpon>201810180738189_initialcreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810120220246_InitialCreate1.cs" />
-    <Compile Include="Migrations\201810120220246_InitialCreate1.Designer.cs">
-      <DependentUpon>201810120220246_InitialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810120242036_InitialCreate2.cs" />
-    <Compile Include="Migrations\201810120242036_InitialCreate2.Designer.cs">
-      <DependentUpon>201810120242036_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810120303158_InitialCreate3.cs" />
-    <Compile Include="Migrations\201810120303158_InitialCreate3.Designer.cs">
-      <DependentUpon>201810120303158_InitialCreate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810120304032_InitialCreate4.cs" />
-    <Compile Include="Migrations\201810120304032_InitialCreate4.Designer.cs">
-      <DependentUpon>201810120304032_InitialCreate4.cs</DependentUpon>
+    <Compile Include="Migrations\201810180747498_initialcreate1.cs" />
+    <Compile Include="Migrations\201810180747498_initialcreate1.Designer.cs">
+      <DependentUpon>201810180747498_initialcreate1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentMeta.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostMeta.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductMeta.cs" />
+    <Compile Include="Models\Term.cs" />
+    <Compile Include="Models\TermMeta.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserMeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SiteMapProvider\SiteMapProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -275,31 +268,47 @@
     <Content Include="Views\Post\Index.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Home\PageCarousel.cshtml" />
+    <Content Include="Views\Home\ProductSingle.cshtml" />
+    <Content Include="Views\Home\ProductPage.cshtml" />
+    <Content Include="Views\Home\BlogSingle.cshtml" />
+    <Content Include="Views\Home\BlogPage.cshtml" />
+    <Content Include="Views\Home\LogOut.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\SignIn.cshtml" />
+    <Content Include="Views\Home\LogIn.cshtml" />
+    <Content Include="Views\Home\CardPricing.cshtml" />
+    <Content Include="Views\Home\CardBG.cshtml" />
+    <Content Include="Views\Home\CardProfile.cshtml" />
+    <Content Include="Views\Home\CardBlog.cshtml" />
+    <Content Include="Views\Home\PageLanding.cshtml" />
+    <Content Include="Views\Home\PagePricing.cshtml" />
+    <Content Include="Views\Home\PageAbout.cshtml" />
+    <Content Include="Views\Home\PageContact.cshtml" />
+    <Content Include="Views\Home\PageBlog.cshtml" />
+    <Content Include="Views\Home\PageProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Banner\" />
-    <Folder Include="Images\Scapes\" />
+    <Folder Include="Images\Desktop\Avatar\" />
+    <Folder Include="Images\Desktop\Banner\" />
+    <Folder Include="Images\Desktop\Food\" />
+    <Folder Include="Images\Desktop\Scapes\" />
+    <Folder Include="Images\Mobile\Avatar\" />
+    <Folder Include="Images\Mobile\Banner\" />
+    <Folder Include="Images\Mobile\Food\" />
+    <Folder Include="Images\Mobile\Scapes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810110921419_InitialCreate.resx">
-      <DependentUpon>201810110921419_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810180738189_initialcreate.resx">
+      <DependentUpon>201810180738189_initialcreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120220246_InitialCreate1.resx">
-      <DependentUpon>201810120220246_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120242036_InitialCreate2.resx">
-      <DependentUpon>201810120242036_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120303158_InitialCreate3.resx">
-      <DependentUpon>201810120303158_InitialCreate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120304032_InitialCreate4.resx">
-      <DependentUpon>201810120304032_InitialCreate4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810180747498_initialcreate1.resx">
+      <DependentUpon>201810180747498_initialcreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
