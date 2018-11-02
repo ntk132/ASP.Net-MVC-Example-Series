@@ -65,6 +65,9 @@
 
 .option-bar button:not([type="submit"]) {
     padding: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
 
 .option-bar button:not([type="submit"]):hover {
@@ -73,19 +76,23 @@
 
 .option-bar .dropdown-menu {
     text-align: left;
-    vertical-align:central !important;
     left:calc(50% - 20px);
-    border-radius:0px;
+    border:0px;
     padding:0px;
+    opacity: 0.85;
 }
-
+.option-bar .dropdown-menu > li {
+    padding:5px;
+}
 .option-bar .dropdown-menu > li a {
     padding:10px;
 }
 
 .option-bar .dropdown-menu > li a:hover {
     background: #ccc;
-    color: #333;
+    border-radius:20px;
+    color: #111;
+    opacity: 1.25;
 }
 
 .option-bar::after {
@@ -101,31 +108,41 @@
     text-align: center;
     margin: 10px;
     filter: brightness(50%);
+    border-radius: 10px;
     transition: filter 0.3s;
     transition: box-shadow 0.3s;
+    transition: border-radius 0.3s;
 }
-
 .card:hover {
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.4);
     filter: brightness(100%);
+    border-radius: 0;
 }
-
+.card:hover img {
+    border-radius: 0;
+}
 .card-header {
     font-weight: bold;
     font-size: 18px;
     padding: 10px 0;
     overflow: hidden;
 }
+.card-content {}
+.card-meta {
+    padding: 5px 0;
+}
+.card img {
+    border-radius: 10px 10px 0 0;
+    transition: border-radius 0.2s;
+}
 .card a {
     text-decoration: none;
 }
-
 .card .title {
     color: grey;
     font-size: 25px;
     padding: 10px 0;
 }
-
 .card button {
     border: none;
     outline: none;

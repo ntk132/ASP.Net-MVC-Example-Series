@@ -24,7 +24,7 @@
     position:relative;
     border-radius:50%;
     overflow:hidden;
-    background: #ccc;
+    background: #eee;
 }
 
 .donut-chart .slice {
@@ -57,14 +57,14 @@
     clip: rect(0 60px 30px 0);
     -webkit-transform: rotate(-90deg);
     transform:rotate(-90deg);
-    background: #50c690;
+    background: #ccc;
 }
 
 .donut-chart .two {
     clip: rect(0 30px 60px 0);
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-    background: #ccc;
+    background: #eee;
 }
     /*--------[Menu Dashboard]--------*/
 .widget {
@@ -111,15 +111,15 @@
 .dropdown-btn:after {
     content: "\25bc";
     font-size: 10px;
-    color: #347B98;
+    color: #333;
     float: right;
     margin-top: 3px;
     margin-left: 5px;
 }
 
 .selected {
-    background-color: #e4f1f6;
-    border-left-color: #1A3E4C;
+    background-color: #ccc;
+    border-left-color: #333;
 }
 
 .selected + .dropdown-content {
@@ -132,8 +132,9 @@
 
 .dropdown-btn:hover,
 .dropdown-content a:hover {
-    background-color: #e4f1f6;
-    border-left-color: #1A3E4C;
+    color: #333;
+    background-color: #ccc;
+    border-left-color: #333;
 }
 
 .dropdown-content {
@@ -176,7 +177,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: #347B98;
+    background: #ccc;
     color:#fff;
 }
 
@@ -187,4 +188,56 @@ button {
 button:hover {
     background: #666;
     color: #fff;
+}
+
+/*---------[Upload Media Dialog]--------*/
+ul.media-gallery,
+.media-gallery ul {
+    list-style: none;
+    list-style-type: none;
+}
+ul.media-gallery li,
+.media-gallery ul li {
+    display: inline-block;
+    padding: 5px;
+}
+ul.media-gallery li:hover,
+.media-gallery ul li:hover {
+    filter: brightness(75%);
+}
+.media-box {
+    max-height: 200px;
+    max-width: 200px;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+    .modal-dialog {
+        right: auto;
+        left: 50%;
+        width: auto;
+        margin: 0 10% !important;
+        padding: 30px 0 !important;
+    }
+}
+.modal-dialog {
+    z-index: 1050;
+    width: auto;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,0.5);
+    background-clip: padding-box;
+    padding: 10px;
+}
+
+.modal-content input[type="text"] {
+    width: 100%;
 }

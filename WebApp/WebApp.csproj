@@ -123,6 +123,8 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -160,13 +162,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810180738189_initialcreate.cs" />
-    <Compile Include="Migrations\201810180738189_initialcreate.Designer.cs">
-      <DependentUpon>201810180738189_initialcreate.cs</DependentUpon>
+    <Compile Include="Migrations\201810190303045_init.cs" />
+    <Compile Include="Migrations\201810190303045_init.Designer.cs">
+      <DependentUpon>201810190303045_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810180747498_initialcreate1.cs" />
-    <Compile Include="Migrations\201810180747498_initialcreate1.Designer.cs">
-      <DependentUpon>201810180747498_initialcreate1.cs</DependentUpon>
+    <Compile Include="Migrations\201810190343178_init1.cs" />
+    <Compile Include="Migrations\201810190343178_init1.Designer.cs">
+      <DependentUpon>201810190343178_init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Models\ProductMeta.cs" />
     <Compile Include="Models\Term.cs" />
     <Compile Include="Models\TermMeta.cs" />
+    <Compile Include="Models\TermRelation.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserMeta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,12 +237,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\User\Upload.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.upload.admin.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -248,7 +253,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_layout.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -293,6 +300,7 @@
     <Folder Include="Images\Desktop\Avatar\" />
     <Folder Include="Images\Desktop\Banner\" />
     <Folder Include="Images\Desktop\Food\" />
+    <Folder Include="Images\Desktop\Origin\" />
     <Folder Include="Images\Desktop\Scapes\" />
     <Folder Include="Images\Mobile\Avatar\" />
     <Folder Include="Images\Mobile\Banner\" />
@@ -304,11 +312,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810180738189_initialcreate.resx">
-      <DependentUpon>201810180738189_initialcreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810190303045_init.resx">
+      <DependentUpon>201810190303045_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810180747498_initialcreate1.resx">
-      <DependentUpon>201810180747498_initialcreate1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810190343178_init1.resx">
+      <DependentUpon>201810190343178_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

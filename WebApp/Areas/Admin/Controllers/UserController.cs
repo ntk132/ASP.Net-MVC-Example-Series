@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Windows.Forms;
 using WebApp.Context;
 using WebApp.Models;
 
@@ -64,12 +66,6 @@ namespace WebApp.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
 
             return View(users.ToPagedList(pageNumber, pageSize));
-        }
-
-        [HttpPost]
-        public ActionResult Index(string a)
-        {
-            return Json("NTK132");
         }
 
         // GET: User/Details/5
@@ -160,7 +156,7 @@ namespace WebApp.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser(int? id, FormCollection formCollection)
+        public ActionResult EditUser(int? id, System.Web.Mvc.FormCollection formCollection)
         {
             if (id == null)
             {
@@ -228,6 +224,76 @@ namespace WebApp.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult act(String test)
+        {
+            return Json(new { Message = "NTK132" } , JsonRequestBehavior.AllowGet );
+        }
+
+        // GET
+        public string LoadMedia()
+        {
+            string root = "/Images";
+            string realRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+            List<String> list = LoadFiles(root, realRoot);
+
+            var serializer = new JavaScriptSerializer();
+            var json = serializer.Serialize(list); // Convert to JSON
+
+            return json;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var file in files)
+                {
+                    try
+                    {
+                        if (file.ContentLength > 0)
+                        {
+                            string _path = Path.Combine(Server.MapPath("~/Images/Desktop/Origin"), file.FileName);
+                            file.SaveAs(_path);
+                        }
+
+                        ViewBag.Message = "Upload successful!";
+                    }
+                    catch
+                    {
+                        ViewBag.Message = "Upload fail!";
+                    }
+                }
+            }
+
+            return Json(new { json = LoadMedia() }, JsonRequestBehavior.AllowGet);
+        }
+
+        public List<String> LoadFiles(String path, String realPath)
+        {
+            DirectoryInfo dir = new DirectoryInfo(realPath);
+            List<String> list = new List<string>();
+
+            if (dir.GetDirectories().Count() > 0)
+            {
+                foreach (DirectoryInfo subDir in dir.GetDirectories())
+                {
+                    list.AddRange(LoadFiles(path + "/" + subDir.Name, Path.Combine(realPath, subDir.Name).ToString()));
+                }
+            }
+            else
+            {
+                foreach (FileInfo file in dir.GetFiles())
+                {
+                    list.Add(path + "/" + file.Name);
+                }
+            }
+
+            return list;
         }
 
         protected override void Dispose(bool disposing)

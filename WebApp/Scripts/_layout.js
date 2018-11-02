@@ -76,12 +76,12 @@ function doClick() {
 		} else {
 			percent = j;
 
-			var activeColor = "#50c690";
+			var activeColor = "#ccc";
 			var deg1 = 90;
 			var deg2 = (percent / 100 * 360);
 
 			if (percent < 50) {
-				activeColor = "#ccc";
+				activeColor = "#eee";
 				deg1 = (percent / 100 * 360 - 90);
 				deg2 = 0;
 			}

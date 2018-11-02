@@ -24,6 +24,7 @@ namespace WebApp.Context
         public DbSet<CommentMeta> CommentMetas { get; set; }
         public DbSet<Term> Terms { get; set; }
         public DbSet<TermMeta> TermMetas { get; set; }
+        public DbSet<TermRelation> TermRelations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

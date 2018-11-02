@@ -74,7 +74,6 @@ namespace WebApp.Context
 
             products.ForEach(p => context.Products.Add(p));
             context.SaveChanges();
-
             
         }
     }

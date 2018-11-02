@@ -196,6 +196,6 @@ C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.csproj.
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.dll
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.pdb
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
-C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.initialcreate.resources
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.init.resources
 C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.csproj.GenerateResource.cache
-C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.initialcreate1.resources
+C:\VS2017\ASP.Net.MVC\ASP.Net-MVC-Example-Series\WebApp\obj\Debug\WebApp.Migrations.init1.resources

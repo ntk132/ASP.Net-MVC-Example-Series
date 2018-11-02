@@ -2,69 +2,102 @@
 @using PagedList.Mvc;
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Scripts/jquery.upload.admin.js" type="text/javascript" />
 
 @{
-    ViewBag.Title = "Users";
+	/**/
+	ViewBag.Title = "Users";
 }
 
 <h2>Users</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+	@Html.ActionLink("Create New", "Create")
 </p>
 
 @using (Html.BeginForm())
 {
-    <p>
-        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
+	<p>
+		@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+		<input type="submit" value="Search" />
+	</p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("User Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            Bio
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            @Html.ActionLink("User Registered", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            Url
-        </th>
-        <th></th>
-    </tr>
+<button class="clickMe">Click ME!</button>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink(item.UserName, "Edit", new { id = item.UserID })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserBio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserRelease)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Url)
-            </td>
-            <td>
-                @Html.ActionLink("Review", "Details", "User",  new { id = item.UserID }, null) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
-            </td>
-        </tr>
-    }
+<div id='myModal' class='modal'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="row">
+				<div class="col-sm-2">
+
+				</div>
+				<div class="col-sm-10">
+					<form action="/" name="frm-media-upload" id="frm-upload" method="post" enctype="multipart/form-data">
+						<input type="file" name="files" id="files" multiple />
+						<br />
+						<button id="btn-upload" type="submit">Upload</button>
+					</form>
+					<div class="media">
+						<input class="media-search" type="text" />
+						<ul class="media-gallery"></ul>
+						<div class="media-option-bar">
+							<button id="btn-select" class="">Select</button>
+							<button id="btn-cancel" class="">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<img id="test" src="" alt="" />
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.ActionLink("User Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+		</th>
+		<th>
+			Bio
+		</th>
+		<th>
+			Email
+		</th>
+		<th>
+			@Html.ActionLink("User Registered", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+		</th>
+		<th>
+			Url
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.ActionLink(item.UserName, "Edit", new { id = item.UserID })
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.UserBio)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Email)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.UserRelease)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Url)
+			</td>
+			<td>
+				@Html.ActionLink("Review", "Details", "User", new { id = item.UserID }, null) |
+				@Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+			</td>
+		</tr>
+	}
 
 </table>
 
@@ -73,3 +106,93 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber ) of @Model.Pag
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+@section Scripts
+{
+	<!--script-- type="text/javascript">
+		$(function () {
+			var selectStr = "";
+
+			$('.clickMe').click(function () {
+				/*$.ajax({
+					url: "/User/LoadMedia",
+					//datatype: "html",
+					//type: "POST",
+					//contentType: "application/json; charset=utf-8",
+					//cache: false,
+					//data: {},
+					success: function (data) {
+						$('#test').html(data);
+						$('#myModal').modal('show');
+					},
+					error: function () {
+						alert("Dynamic content load failed.");
+					}
+				});*/
+				var url = "/Admin/User/LoadMedia";
+				$.get(url, null, function (data) {
+					var tmp = "";
+
+					$.each($.parseJSON(data), function (index, value) {
+						//tmp += "<li><a class=\"media-box\"><img src=\"" + value + "\" /></a></li>";
+						tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
+					});
+
+					$('.media-gallery').html(tmp);
+					$('#myModal').modal('show');
+				});
+			});
+			//$("#closebtn").on('click',function(){
+			//    $('#myModal').modal('hide');
+
+			$("#closbtn").click(function () {
+				$('.media-gallery').html("");
+				$('#myModal').modal('hide');
+			});
+
+			$("#btn-cancel").click(function () {
+				alert($('.media-box').length);
+				$('.media-gallery').html("");
+				$('#myModal').modal('hide');
+			});
+
+			//
+			$("#btn-select").click(function () {
+				$('.media-gallery').html("");
+				$('#myModal').modal('hide');
+
+				$('#test').attr('src', selectStr);
+			});
+
+			$(document).on('click', '.media-box', function () {
+				alert($(this).attr('src'));
+				selectStr = $(this).attr('src');
+			});
+
+			$('#frm-media-upload').submit(function (event) {
+				// Stop form's submitting defaultly
+				event.preventDefault();
+
+				// Gte value to submit
+				var $frm = $(this),
+					files = $frm.find('input[name="files"]').val(),
+					url = "/Admin/User/Upload"/*$frm.attr('action')*/;
+
+				// Sending data using post
+				var posting = $.post(url, { files: files });
+
+				posting.done(function (data) {
+					var tmp = "";
+
+					$.each($.parseJSON(data), function (index, value) {
+						tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
+					});
+
+					$('.media-gallery').html(tmp);
+					$('#myModal').modal('show');
+				});
+			});
+		});
+	</!--script-->
+
+}
