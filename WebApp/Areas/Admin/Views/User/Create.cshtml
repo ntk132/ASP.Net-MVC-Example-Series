@@ -1,22 +1,22 @@
 ﻿@model WebApp.Models.User
 
 @{
-    ViewBag.Title = "Create";
+	ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>New User</h2>
 
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+	@Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+	<div class="form-horizontal">
+		<hr />
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 		<div class="tab">
+			<h3>Basic Informations</h3>
 			<div class="form-group">
 				@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
 				<div class="col-md-10">
@@ -34,6 +34,55 @@
 			</div>
 
 			<div class="form-group">
+				<label class="control-label col-sm-2 col-md-2" for="fb">
+					Avatar
+				</label>
+				<div class="col-sm-10 col-md-10">
+					<p class="clickMe btn-media">Choose Image</p>
+					<img id="img-avatar" src="@ViewBag.Icon" />
+					<input id="icon" name="icon" type="text" value="@ViewBag.Icon" hidden />
+					<div id='myModal' class='modal'>
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="row">
+									<div class="col-sm-2">
+
+									</div>
+									<div class="col-sm-10">
+										<form action="/" name="frm-media-upload" id="frm-upload" method="post" enctype="multipart/form-data">
+											<input type="file" name="files" id="files" multiple />
+											<br />
+											<button id="btn-upload" type="submit">Upload</button>
+										</form>
+										<div class="media">
+											<input class="media-search" type="text" />
+											<ul class="media-gallery"></ul>
+											<div class="media-option-bar">
+												<p id="btn-select" class="btn-media">Select</p>
+												<p id="btn-cancel" class="btn-media">Cancel</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="Create" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+
+		<hr />
+
+		<div class="tab">
+			<h3>Personal Information</h3>
+			<div class="form-group">
 				@Html.LabelFor(model => model.UserBio, htmlAttributes: new { @class = "control-label col-md-2" })
 				<div class="col-md-10">
 					@Html.EditorFor(model => model.UserBio, new { htmlAttributes = new { @class = "form-control" } })
@@ -50,16 +99,8 @@
 			</div>
 
 			<div class="form-group">
-				@Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			<div class="form-group">
 				<div class="col-md-offset-2 col-md-10">
-					<input type="submit" value="Create" class="btn btn-default" />
+					<input type="submit" value="Save" class="btn btn-default" />
 				</div>
 			</div>
 		</div>
@@ -110,13 +151,9 @@
 			</div>
 		</div>
 		<hr />
-    </div>
+	</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -174,3 +174,19 @@
 .card .available {
     background-color: #47d147;
 }
+
+/*--------:[Single Post]:--------*/
+.single .post {
+
+}
+.post .post-header {
+
+}
+.post .post-content span {
+    display:block;
+    width: 100%;
+    word-wrap: break-word;
+}
+.post .post-meta {
+
+}

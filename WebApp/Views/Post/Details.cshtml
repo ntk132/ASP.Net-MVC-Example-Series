@@ -1,94 +1,6 @@
 ﻿@model WebApp.Models.Post
 
-<div>
-	<h4>Post</h4>
-	<hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.User.UserName)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.User.UserName)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostName)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostName)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostTitle)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostTitle)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostContent)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostContent)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostRelease)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostRelease)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostModified)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostModified)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostFormat)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostFormat)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.PostStatus)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.PostStatus)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.CommentStatus)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CommentStatus)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.CommentCount)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CommentCount)
-		</dd>
-
-	</dl>
-</div>
-<p>
-	@Html.ActionLink("Back to List", "Index")
-</p>
+<br />
 
 <div class="row">
 	<div class="col-md-3">
@@ -111,8 +23,12 @@
 			</div>
 
 			<div class="post-content">
-				@Html.DisplayFor(model => model.PostContent)
+				<span>@Html.DisplayFor(model => model.PostContent)</span>
 			</div>
 		</div>
 	</div>
 </div>
+
+<p>
+	@Html.ActionLink("Back to List", "Index")
+</p>

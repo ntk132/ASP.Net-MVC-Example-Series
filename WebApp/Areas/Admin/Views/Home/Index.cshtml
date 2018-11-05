@@ -184,12 +184,6 @@
         <th>
             User Registered
         </th>
-        <th>
-            Url
-        </th>
-        <th>
-            Meta Links
-        </th>
         <th></th>
     </tr>
 
@@ -207,12 +201,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UserRelease)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Url)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Links)
             </td>
             <td>
                 @Html.ActionLink("Review", "Details", "User", new { id = item.UserID }, null) |

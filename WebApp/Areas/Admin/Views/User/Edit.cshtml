@@ -16,6 +16,7 @@
 	@Html.HiddenFor(model => model.UserID)
 
 	<div class="tab">
+		<h3>Basic Informations</h3>
 		<div class="form-group">
 			@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
@@ -32,6 +33,55 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label class="control-label col-sm-2 col-md-2" for="fb">
+				Avatar
+			</label>
+			<div class="col-sm-10 col-md-10">
+				<p class="clickMe btn-media">Choose Image</p>
+				<img id="img-avatar" src="@ViewBag.Avatar" />
+				<input id="avatar" name="avatar" type="text" value="@ViewBag.Avatar" hidden />
+				<div id='myModal' class='modal'>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="row">
+								<div class="col-sm-2">
+
+								</div>
+								<div class="col-sm-10">
+									<form action="/" name="frm-media-upload" id="frm-upload" method="post" enctype="multipart/form-data">
+										<input type="file" name="files" id="files" multiple />
+										<br />
+										<button id="btn-upload" type="submit">Upload</button>
+									</form>
+									<div class="media">
+										<input class="media-search" type="text" />
+										<ul class="media-gallery"></ul>
+										<div class="media-option-bar">
+											<p id="btn-select" class="btn-media">Select</p>
+											<p id="btn-cancel" class="btn-media">Cancel</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Save" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+
+	<hr />
+
+	<div class="tab">
+		<h3>Personal Informations</h3>
 		<div class="form-group">
 			@Html.LabelFor(model => model.UserBio, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
@@ -107,6 +157,95 @@
 	@Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
+@section Scripts
+{
+	<script type="text/javascript">
+		$(function () {
+			var selectStr = "";
+
+			$('.clickMe').click(function () {
+				/*$.ajax({
+					url: "/User/LoadMedia",
+					//datatype: "html",
+					//type: "POST",
+					//contentType: "application/json; charset=utf-8",
+					//cache: false,
+					//data: {},
+					success: function (data) {
+						$('#test').html(data);
+						$('#myModal').modal('show');
+					},
+					error: function () {
+						alert("Dynamic content load failed.");
+					}
+				});*/
+				var url = "/Admin/User/LoadMedia";
+				$.get(url, null, function (data) {
+					var tmp = "";
+
+					$.each($.parseJSON(data), function (index, value) {
+						//tmp += "<li><a class=\"media-box\"><img src=\"" + value + "\" /></a></li>";
+						tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
+					});
+
+					$('.media-gallery').html(tmp);
+					$('#myModal').modal('show');
+				});
+			});
+			//$("#closebtn").on('click',function(){
+			//    $('#myModal').modal('hide');
+
+			$("#closbtn").click(function () {
+				$('.media-gallery').html("");
+				$('#myModal').modal('hide');
+			});
+
+			$("#btn-cancel").click(function () {
+				$('.media-gallery').html("");
+				$('#myModal').modal('hide');
+			});
+
+			//
+			$("#btn-select").click(function () {
+				$('.media-gallery').html("");
+				$('#myModal').modal('hide');
+
+				$('#img-avatar').attr('src', selectStr);
+				$('#avatar').attr("value", selectStr);
+			});
+
+			$(document).on('click', '.media-box', function () {
+				$('media-box').css("border", "0px white");
+				$('media-box').css("padding", "0px");
+
+				$(this).css("border", "3px green");
+				$(this).css("padding", "2px");
+				selectStr = $(this).attr('src');
+			});
+
+			$('#frm-media-upload').submit(function (event) {
+				// Stop form's submitting defaultly
+				event.preventDefault();
+
+				// Gte value to submit
+				var $frm = $(this),
+					files = $frm.find('input[name="files"]').val(),
+					url = "/Admin/User/Upload"/*$frm.attr('action')*/;
+
+				// Sending data using post
+				var posting = $.post(url, { files: files });
+
+				posting.done(function (data) {
+					var tmp = "";
+
+					$.each($.parseJSON(data), function (index, value) {
+						tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
+					});
+
+					$('.media-gallery').html(tmp);
+					$('#myModal').modal('show');
+				});
+			});
+		});
+	</script>
 }

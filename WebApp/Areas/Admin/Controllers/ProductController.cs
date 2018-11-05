@@ -13,7 +13,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
-    public class ProductController : Controller
+    public class ProductController : UploadController
     {
         private DatabaseContext db = new DatabaseContext();
 
@@ -93,6 +93,9 @@ namespace WebApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductName,ProductInfo,ProductRelease,ProductModified,ProductStatus,Price,UserID")] Product product)
         {
+            ProductMeta productMeta = new ProductMeta();
+            var icon = Request.Form["icon"];
+
             try
             {
                 if (ModelState.IsValid)
@@ -101,7 +104,17 @@ namespace WebApp.Areas.Admin.Controllers
                     product.ProductModified = DateTime.Now;
 
                     db.Products.Add(product);
+
+                    productMeta.MetaKey = "img_icon";
+                    productMeta.MetaValue = icon;
+                    productMeta.ProductID = product.ProductID;
+
                     db.SaveChanges();
+
+                    product.ProductMetas.Add(productMeta);
+
+                    db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
             }
@@ -111,7 +124,9 @@ namespace WebApp.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
+            ViewBag.Icon = icon;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", product.UserID);
+
             return View(product);
         }
 
@@ -122,12 +137,18 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Product product = db.Products.Find(id);
+            ProductMeta productMeta = product.ProductMetas.Where(m => m.MetaKey == "img_icon").Single();
+
             if (product == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Icon = productMeta.MetaValue;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", product.UserID);
+
             return View(product);
         }
 
@@ -144,12 +165,15 @@ namespace WebApp.Areas.Admin.Controllers
             }
 
             var productToUpdate = db.Products.Find(id);
+            var productMetaToUpdate = productToUpdate.ProductMetas.Where(m => m.MetaKey == "img_icon").Single();
+            var icon = Request.Form["icon"];
 
             if (TryUpdateModel(productToUpdate, "", new string[] { "ProductName", "ProductInfo", "ProductModified", "ProductStatus", "Price" }))
             {
                 try
                 {
                     productToUpdate.ProductModified = DateTime.Now;
+                    productMetaToUpdate.MetaValue = icon;
 
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -161,6 +185,7 @@ namespace WebApp.Areas.Admin.Controllers
                 }
             }
 
+            ViewBag.Icon = icon;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productToUpdate.UserID);
             return View(productToUpdate);
         }
@@ -192,6 +217,12 @@ namespace WebApp.Areas.Admin.Controllers
             try
             {
                 Product product = db.Products.Find(id);
+
+                foreach (ProductMeta productMeta in product.ProductMetas)
+                {
+                    db.ProductMetas.Remove(productMeta);
+                }
+
                 db.Products.Remove(product);
                 db.SaveChanges();
             }

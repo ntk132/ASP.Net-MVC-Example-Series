@@ -39,6 +39,7 @@ namespace WebApp.Models
         [Display(Name = "Title")]
         public string PostTitle { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Content")]
         public string PostContent { get; set; }
 

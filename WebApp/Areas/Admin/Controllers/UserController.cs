@@ -17,7 +17,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
-    public class UserController : Controller
+    public class UserController : UploadController
     {
         private DatabaseContext db = new DatabaseContext();
 
@@ -98,14 +98,39 @@ namespace WebApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserName,UserPass,UserBio,Email,Url,Links")] User user)
         {
+            var array = new string[] { Request.Form["fb"], Request.Form["yt"], Request.Form["ins"], Request.Form["web"] };
+            var newArray = array.Select(x => new { link = x }).ToArray();
+
+            var serializer = new JavaScriptSerializer();
+            var json = serializer.Serialize(newArray); // Convert to JSON
+
+            // create meta to store avatar of new user
+            var avatar = Request.Form["avatar"];
+            UserMeta userMeta = new UserMeta();
+
             try
             {
                 if (ModelState.IsValid)
                 {
+                    // Store new user to DB
                     user.UserRelease = DateTime.Now;
-
+                    user.Links = json;
                     db.Users.Add(user);
                     db.SaveChanges();
+
+                    // Store UserMate prefer to newest (just created) user
+                    userMeta.MetaKey = "avatar";
+                    userMeta.MetaValue = avatar;
+                    userMeta.UserID = user.UserID;
+                    db.UserMetas.Add(userMeta);
+
+                    // Update DB
+                    db.SaveChanges();
+
+                    user.UserMetas.Add(userMeta);
+
+                    db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
             }
@@ -148,6 +173,11 @@ namespace WebApp.Areas.Admin.Controllers
             ViewBag.ins = result[2];
             ViewBag.web = result[3];
 
+            // Get user's avatar
+            var avatar = db.UserMetas.Where(m => m.MetaKey == "avatar" && m.UserID == id.Value).Single();
+
+            ViewBag.Avatar = avatar.MetaValue;
+
             return View(user);
         }
 
@@ -164,6 +194,7 @@ namespace WebApp.Areas.Admin.Controllers
             }
 
             var userToUpdate = db.Users.Find(id);
+            var userMetaToUpdate = db.UserMetas.Where(m => m.MetaKey == "avatar" && m.UserID == id.Value).Single();
 
             /* Get the JSON from Collecting multi social links */
             // Collect multi social link and store it to array
@@ -173,13 +204,19 @@ namespace WebApp.Areas.Admin.Controllers
             var serializer = new JavaScriptSerializer();
             var json = serializer.Serialize(newArray); // Convert to JSON
 
+            // create meta to store avatar of new user
+            var avatar = Request.Form["avatar"];            
+
             if (TryUpdateModel(userToUpdate, "", new string[] { "UserPass", "UserBio", "Email", "Url", "Links" }))
             {
                 
                 userToUpdate.Links = json;
-
+                userMetaToUpdate.MetaValue = avatar;
                 db.Entry(userToUpdate).State = EntityState.Modified;
+                db.Entry(userMetaToUpdate).State = EntityState.Modified;
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -214,6 +251,12 @@ namespace WebApp.Areas.Admin.Controllers
             try
             {
                 User user = db.Users.Find(id);
+
+                foreach (UserMeta userMeta in db.UserMetas.Where(m => m.UserID == id))
+                {
+                    db.UserMetas.Remove(userMeta);
+                }
+
                 db.Users.Remove(user);
                 db.SaveChanges();
             }
@@ -225,7 +268,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
+        /*
         [HttpPost]
         public JsonResult act(String test)
         {
@@ -295,7 +338,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             return list;
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -58,11 +58,48 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+			<label class="control-label col-sm-2 col-md-2" for="fb">
+				Avatar
+			</label>
+			<div class="col-sm-10 col-md-10">
+				<p class="clickMe btn-media">Choose Image</p>
+				<img id="img-avatar" src="@ViewBag.Icon" />
+				<input id="icon" name="icon" type="text" value="@ViewBag.Icon" hidden />
+				<div id='myModal' class='modal'>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="row">
+								<div class="col-sm-2">
+
+								</div>
+								<div class="col-sm-10">
+									<form action="/" name="frm-media-upload" id="frm-upload" method="post" enctype="multipart/form-data">
+										<input type="file" name="files" id="files" multiple />
+										<br />
+										<button id="btn-upload" type="submit">Upload</button>
+									</form>
+									<div class="media">
+										<input class="media-search" type="text" />
+										<ul class="media-gallery"></ul>
+										<div class="media-option-bar">
+											<p id="btn-select" class="btn-media">Select</p>
+											<p id="btn-cancel" class="btn-media">Cancel</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Save" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
 }
 
 <div>

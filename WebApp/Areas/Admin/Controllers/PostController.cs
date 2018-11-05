@@ -13,7 +13,7 @@ using WebApp.Models;
 namespace WebApp.Areas.Admin.Controllers
 {
     [RouteArea("Admin")]
-    public class PostController : Controller
+    public class PostController : UploadController
     {
         private DatabaseContext db = new DatabaseContext();
 
@@ -91,17 +91,31 @@ namespace WebApp.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostName,PostTitle,PostContent,PostFormat,PostStatus,CommentStatus,CommentCount,UserID")] Post post)
+        public ActionResult Create([Bind(Include = "PostTitle,PostContent,PostFormat,PostStatus,CommentStatus,CommentCount,UserID")] Post post)
         {
+            PostMeta postMeta = new PostMeta();
+            var thumbnail = Request.Form["thumbnail"];
+
             try
             {
                 if (ModelState.IsValid)
                 {
+                    //
                     post.PostRelease = DateTime.Now;
                     post.PostModified = DateTime.Now;
+                    post.PostContent.Replace("\n", "<br />");
 
                     db.Posts.Add(post);
                     db.SaveChanges();
+
+                    //
+                    postMeta.PostID = post.PostID;
+                    postMeta.MetaKey = "img_thumbnail";
+                    postMeta.MetaValue = thumbnail;
+
+                    db.PostMetas.Add(postMeta);
+                    db.SaveChanges();
+
                     return RedirectToAction("Index");
                 }
             }
@@ -111,6 +125,7 @@ namespace WebApp.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
+            ViewBag.Thumbnail = thumbnail;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", post.UserID);
             return View(post);
         }
@@ -122,12 +137,17 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Post post = db.Posts.Find(id);
+
             if (post == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Thumbnail = db.PostMetas.Where(m => m.PostID == id.Value && m.MetaKey == "img_thumbnail").Single().MetaValue;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", post.UserID);
+
             return View(post);
         }
 
@@ -144,16 +164,23 @@ namespace WebApp.Areas.Admin.Controllers
             }
 
             var postToUpdate = db.Posts.Find(id);
+            var postMetaToUpdate = postToUpdate.PostMetas.Where(m => m.MetaKey == "img_thumbnail").Single();
+            var thumbnail = Request.Form["thumbnail"];
 
-            if (TryUpdateModel(postToUpdate, "", new string[] { "PostName", "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus" }))
+            if (TryUpdateModel(postToUpdate, "", new string[] { "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus" }))
             {
                 postToUpdate.PostModified = DateTime.Now;
+                postToUpdate.PostContent.Replace("\r\n", "<br />");
+
+                postMetaToUpdate.MetaValue = thumbnail;
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Thumbnail = thumbnail;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", postToUpdate.UserID);
+
             return View(postToUpdate);
         }
 
@@ -164,11 +191,14 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             if (saveChangesError.GetValueOrDefault())
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
+
             Post post = db.Posts.Find(id);
+
             if (post == null)
             {
                 return HttpNotFound();
@@ -184,7 +214,15 @@ namespace WebApp.Areas.Admin.Controllers
             try
             {
                 Post post = db.Posts.Find(id);
+
+                // Delete all meta of this post
+                foreach(PostMeta postMeta in db.PostMetas.Where(m => m.PostID == id))
+                {
+                    db.PostMetas.Remove(postMeta);
+                }
+
                 db.Posts.Remove(post);
+
                 db.SaveChanges();
             }
             catch (DataException/* dex */)
