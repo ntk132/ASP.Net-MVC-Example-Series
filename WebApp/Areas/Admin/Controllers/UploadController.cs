@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Web.Services;
 
 namespace WebApp.Areas.Admin.Controllers
 {
@@ -23,18 +24,24 @@ namespace WebApp.Areas.Admin.Controllers
             return json;
         }
 
+        // GET
+        public ActionResult Upload()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="files">List of files is going to be uploaded to the server</param>
-        /// <returns>List of pathes 's all file in server (included new list)</returns>
+        /// <returns>//List of pathes 's all file in server (included new list)</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public string Upload(IEnumerable<HttpPostedFileBase> files)
+        public void Upload(HttpPostedFileBase[] files)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && files != null)
             {
-                foreach (var file in files)
+                foreach (HttpPostedFileBase file in files)
                 {
                     try
                     {
@@ -51,9 +58,7 @@ namespace WebApp.Areas.Admin.Controllers
                         ViewBag.Message = "Upload fail!";
                     }
                 }
-            }
-
-            return LoadMedia();
+            }          
         }
 
         /// <summary>

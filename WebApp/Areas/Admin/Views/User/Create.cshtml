@@ -49,11 +49,11 @@
 
 									</div>
 									<div class="col-sm-10">
-										<form action="/" name="frm-media-upload" id="frm-upload" method="post" enctype="multipart/form-data">
-											<input type="file" name="files" id="files" multiple />
-											<br />
-											<button id="btn-upload" type="submit">Upload</button>
-										</form>
+										<input type="file" name="files" id="files" multiple />
+										<ul id="lst-img"></ul>
+										<br />
+										<button id="btn-upload" runat="server" type="submit">Upload</button>
+										<iframe id="ifrm" src="/Admin/Upload/Upload" hidden></iframe>
 										<div class="media">
 											<input class="media-search" type="text" />
 											<ul class="media-gallery"></ul>

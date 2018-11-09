@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebApp.Models
 {
@@ -39,6 +40,7 @@ namespace WebApp.Models
         [Display(Name = "Title")]
         public string PostTitle { get; set; }
 
+        [AllowHtml]
         [DataType(DataType.MultilineText)]
         [Display(Name = "Content")]
         public string PostContent { get; set; }

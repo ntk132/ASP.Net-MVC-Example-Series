@@ -25,7 +25,7 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("Vitsit Site", "Index", "Home", new { area = ""}, null)</li>
+					<li>@Html.ActionLink("Vitsit Site", "Index", "Home", new { area = "" }, null)</li>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown">+</a>
 						<ul class="dropdown-menu">
@@ -85,6 +85,7 @@
 	@Scripts.Render("~/bundles/page")
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/upload")
+	@Scripts.Render("~/bundles/wysiwyg")
 	@RenderSection("scripts", required: false)
 </body>
 </html>

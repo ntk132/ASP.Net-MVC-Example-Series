@@ -268,77 +268,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-        /*
-        [HttpPost]
-        public JsonResult act(String test)
-        {
-            return Json(new { Message = "NTK132" } , JsonRequestBehavior.AllowGet );
-        }
-
-        // GET
-        public string LoadMedia()
-        {
-            string root = "/Images";
-            string realRoot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
-            List<String> list = LoadFiles(root, realRoot);
-
-            var serializer = new JavaScriptSerializer();
-            var json = serializer.Serialize(list); // Convert to JSON
-
-            return json;
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files)
-        {
-            if (ModelState.IsValid)
-            {
-                foreach (var file in files)
-                {
-                    try
-                    {
-                        if (file.ContentLength > 0)
-                        {
-                            string _path = Path.Combine(Server.MapPath("~/Images/Desktop/Origin"), file.FileName);
-                            file.SaveAs(_path);
-                        }
-
-                        ViewBag.Message = "Upload successful!";
-                    }
-                    catch
-                    {
-                        ViewBag.Message = "Upload fail!";
-                    }
-                }
-            }
-
-            return Json(new { json = LoadMedia() }, JsonRequestBehavior.AllowGet);
-        }
-
-        public List<String> LoadFiles(String path, String realPath)
-        {
-            DirectoryInfo dir = new DirectoryInfo(realPath);
-            List<String> list = new List<string>();
-
-            if (dir.GetDirectories().Count() > 0)
-            {
-                foreach (DirectoryInfo subDir in dir.GetDirectories())
-                {
-                    list.AddRange(LoadFiles(path + "/" + subDir.Name, Path.Combine(realPath, subDir.Name).ToString()));
-                }
-            }
-            else
-            {
-                foreach (FileInfo file in dir.GetFiles())
-                {
-                    list.Add(path + "/" + file.Name);
-                }
-            }
-
-            return list;
-        }
-        */
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

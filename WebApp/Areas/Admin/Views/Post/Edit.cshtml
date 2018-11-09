@@ -30,6 +30,54 @@
 				<div class="col-md-10">
 					<textarea class="form-control text-box multi-line valid" id="PostContent" name="PostContent" rows="10">@Model.PostContent</textarea>
 					@Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
+
+					<!-- --------:[WYSIWYG Editor Tool]:-------- -->
+					<div class="wysiwyg">
+						<div class="wysiwyg-toolbar">
+							<!--
+				<a href="#" data-command=""><i class="fa fa-"></i></a>
+			-->
+							<a href="#" data-command="undo"><i class="fa fa-undo"></i></a>
+							<a href="#" data-command="redo"><i class="fa fa-repeat"></i></a>
+
+							<div class="fore-wrapper">
+								<i class="fa fa-font" style="color:#c96;"></i>
+								<div class="fore-palette"></div>
+							</div>
+
+							<div class="back-wrapper">
+								<i class="fa fa-font" style="background:#c96;"></i>
+								<div class="back-palette"></div>
+							</div>
+
+							<a href="#" data-command="bold"><i class="fa fa-bold"></i></a>
+							<a href="#" data-command="italic"><i class="fa fa-italic"></i></a>
+							<a href="#" data-command="underline"><i class="fa fa-underline"></i></a>
+							<a href="#" data-command="strikeThrough"><i class="fa fa-strikethrough"></i></a>
+							<a href="#" data-command="justifyLeft"><i class="fa fa-align-left"></i></a>
+							<a href="#" data-command="justifyCenter"><i class="fa fa-align-center"></i></a>
+							<a href="#" data-command="justifyRight"><i class="fa fa-align-right"></i></a>
+							<a href="#" data-command="justifyFull"><i class="fa fa-align-justify"></i></a>
+							<a href="#" data-command="indent"><i class="fa fa-indent"></i></a>
+							<a href="#" data-command="outdent"><i class="fa fa-outdent"></i></a>
+							<a href="#" data-command="insertUnorderedList"><i class="fa fa-list-ul"></i></a>
+							<a href="#" data-command="insertOrderedList"><i class="fa fa-list-ol"></i></a>
+							<a href="#" data-command="h1">H1</a>
+							<a href="#" data-command="h2">H2</a>
+							<a href="#" data-command="createlink"><i class="fa fa-link"></i></a>
+							<a href="#" data-command="unlink"><i class="fa fa-unlink"></i></a>
+							<a href="#" data-command="insertimage"><i class="fa fa-image"></i></a>
+							<a href="#" data-command="p">p</a>
+							<a href="#" data-command="subscript"><i class="fa fa-subscript"></i></a>
+							<a href="#" data-command="superscript"><i class="fa fa-superscript"></i></a>
+						</div>
+
+						<div class="wysiwyg-editor">
+							<div id="editor" contenteditable>@Model.PostContent</div>
+						</div>
+						<br /><p id="btn-txt">Show HTML</p>
+						<textarea id="txt-test" rows="25" style="width:100%;"></textarea>
+					</div>
 				</div>
 			</div>
 
@@ -47,11 +95,11 @@
 
 									</div>
 									<div class="col-sm-10">
-										<form action="/" name="frm-media-upload" id="frm-upload" method="post" enctype="multipart/form-data">
-											<input type="file" name="files" id="files" multiple />
-											<br />
-											<button id="btn-upload" type="submit">Upload</button>
-										</form>
+										<input type="file" name="files" id="files" multiple />
+										<ul id="lst-img"></ul>
+										<br />
+										<button id="btn-upload" runat="server" type="submit">Upload</button>
+										<iframe id="ifrm" src="/Admin/Upload/Upload" hidden></iframe>
 										<div class="media">
 											<input class="media-search" type="text" />
 											<ul class="media-gallery"></ul>

@@ -164,13 +164,14 @@ namespace WebApp.Areas.Admin.Controllers
             }
 
             var postToUpdate = db.Posts.Find(id);
-            var postMetaToUpdate = postToUpdate.PostMetas.Where(m => m.MetaKey == "img_thumbnail").Single();
+            var postMetaToUpdate = db.PostMetas.Where(m => m.PostID ==id.Value && m.MetaKey == "img_thumbnail").Single();
             var thumbnail = Request.Form["thumbnail"];
 
             if (TryUpdateModel(postToUpdate, "", new string[] { "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus" }))
-            {
+            {                
                 postToUpdate.PostModified = DateTime.Now;
                 postToUpdate.PostContent.Replace("\r\n", "<br />");
+                postToUpdate.PostContent.Replace("\"", "\\\"");
 
                 postMetaToUpdate.MetaValue = thumbnail;
 

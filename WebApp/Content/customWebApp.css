@@ -25,3 +25,117 @@ button {
 .fa {
     color: #333;
 }
+
+/*--------:[WYSIWYG Editor Tool]:--------*/
+/*---- For both admin(post's content) and user(comment) side ----*/
+.wysiwyg {
+    margin: 0 auto;
+    width: auto;
+    font-family:'Dosis';
+    background:#fff;
+}
+
+.wysiwyg a {
+    cursor: pointer;
+}
+
+.wysiwyg #editor {
+    box-shadow: 0 0 2px #CCC;
+    min-height: 150px;
+    overflow: auto;
+    padding: 1em;
+    margin-top: 20px;
+    resize: vertical;
+    outline: none;
+}
+
+.wysiwyg .wysiwyg-toolbar {
+    text-align:center;
+}
+
+.wysiwyg .wysiwyg-toolbar a,
+.wysiwyg .fore-wrapper,
+.wysiwyg .back-wrapper {
+    border: 1px solid #AAA;
+    background: #FFF;
+    border-radius: 1px;
+    color: black;
+    padding: 5px;
+    width: 2.25em;
+    margin: -2px;
+    margin-top: 10px;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0px 1px 0px #CCC;
+}
+
+.wysiwyg .wysiwyg-toolbar a:hover,
+.wysiwyg .fore-wrapper:hover,
+.wysiwyg .back-wrapper:hover {
+    background: #f2f2f2;
+    border-color: #8c8c8c;
+}
+
+.wysiwyg a[data-command='redo'],
+.wysiwyg a[data-command='strikeThrough'],
+.wysiwyg a[data-command='justifyFull'],
+.wysiwyg a[data-command='insertOrderedList'],
+.wysiwyg a[data-command='outdent'],
+.wysiwyg a[data-command='p'],
+.wysiwyg a[data-command='superscript'] {
+    margin-right: 5px;
+    border-radius: 0 3px 3px 0;
+}
+
+.wysiwyg a[data-command='undo'],
+.fore-wrapper,
+.wysiwyg a[data-command='justifyLeft'],
+.wysiwyg a[data-command='insertUnorderedList'],
+.wysiwyg a[data-command='indent'],
+.wysiwyg a[data-command='h1'],
+.wysiwyg a[data-command='subscript'] {
+    border-radius: 3px 0 0 3px;
+}
+
+.wysiwyg a.palette-item {
+    height: 1em;
+    border-radius: 3px;
+    margin: 2px;
+    width: 1em;
+    border: 1px solid #CCC;
+}
+
+.wysiwyg a.palette-item:hover {
+    border: 1px solid #CCC;
+    box-shadow: 0 0 3px #333;
+}
+
+.wysiwyg .fore-palette,
+.wysiwyg .back-palette {
+    display: none;
+}
+
+.wysiwyg .fore-wrapper,
+.wysiwyg .back-wrapper {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.wysiwyg .fore-wrapper:hover .fore-palette,
+.wysiwyg .back-wrapper:hover .back-palette {
+    display: block;
+    float: left;
+    position: absolute;
+    padding: 3px;
+    width: 160px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    box-shadow: 0 0 5px #CCC;
+    height: 70px;
+}
+
+.wysiwyg .fore-palette a,
+.wysiwyg .back-palette a {
+    background: #FFF;
+    margin-bottom: 2px;
+}

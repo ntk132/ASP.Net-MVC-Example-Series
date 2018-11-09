@@ -36,40 +36,54 @@ $("#btn-select").click(function () {
 	$('#test').attr('src', selectStr);
 });
 
+var DELAY = 700, clicks = 0, timer = null;
 $(document).on('click', '.media-box', function () {
-	alert($(this).attr('src'));
-	selectStr = $(this).attr('src');
+	clicks++;
+
+	if (clicks === 1) {
+		timer = setTimeout(function () {
+			// CODE FOR SINGLE CLICK EVENT in here.
+			selectStr = $(this).attr('src');
+			clicks = 0;
+		}, DELAY);
+	} else {
+		// CODE FOR SINGLE CLICK EVENT in here.
+		clearTimeout(timer);
+
+		$('.media-gallery').html("");
+		$('#myModal').modal('hide');
+		$('#img-thumbnail').attr('src', $(this).attr('src'));
+
+		clicks = 0;
+	}
+}).on('dblclick', function(e) {
+	e.preventDefault();
 });
-/*
-$('#frm-media-upload').submit(function (event) {
-	// Stop form's submitting defaultly
-	event.preventDefault();
 
-	// Get value to submit
-	var $frm = $(this),
-		files = $frm.find('input[name="files"]').val(),
-		url = "/Admin/User/Upload";
+$('input[name="files"]').change(function () {
+	var files = $(this).get(0).files;
+	var txt = "";
 
-	// Sending data using post
-	var posting = $.post(url, { files: files });
+	for (var i = 0; i < files.length; i++) {
+		txt += "<li><p>" + files[i].name + "</p></li>";
+	}
 
-	posting.done(function (data) {
-		var tmp = "";
+	$('#lst-img').html(txt);
+});
 
-		$.each($.parseJSON(data), function (index, value) {
-			tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
-		});
-
-		$('.media-gallery').html(tmp);
-		$('#myModal').modal('show');
-	});
-});*/
-/*
 $('#btn-upload').click(function () {
-	var files = $('input[name="files"]').val();
-	var url = "/Admin/Upload/Upload";
+	var ifrm = $('#ifrm');
+	var src = ifrm.attr('src');
+	var input = $('input[name="files"]');
+	var url = "/Admin/Upload/LoadMedia";
 
-	$.post(url, files, function (data) {
+	ifrm.contents().find('input[name="files"]').get(0).files = input.get(0).files;
+	ifrm.contents().find('#frm-media-upload').submit();
+
+	$('#lst-img').html("");
+	$('.media-gallery').html("");
+		
+	$.get(url, null, function (data) {
 		var tmp = "";
 
 		$.each($.parseJSON(data), function (index, value) {
@@ -77,8 +91,9 @@ $('#btn-upload').click(function () {
 		});
 
 		$('.media-gallery').html(tmp);
-		$('#myModal').modal('show');
-	}).fail(function () {
-		alert("Upload file(s) is failed!");
 	});
-});*/
+
+	// Clear data in input
+	input.val("");
+	ifrm.attr('src', src);
+});

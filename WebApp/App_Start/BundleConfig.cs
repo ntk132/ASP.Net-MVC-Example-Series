@@ -26,6 +26,9 @@ namespace WebApp
             bundles.Add(new ScriptBundle("~/bundles/upload").Include(
                 "~/Scripts/jquery.upload*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/wysiwyg").Include(
+                "~/Scripts/jquery.editor*"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
