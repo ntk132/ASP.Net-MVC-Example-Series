@@ -1,4 +1,4 @@
-﻿var colorPalette = ['000000', '', '', 'ffffff'];
+﻿var colorPalette = ['FFFFFF', 'FF6F00', 'F57F17', 'E65100', 'BF360C', 'B71C1C', '880E4F', '827717', '4A148C', '3E2723', '33691E', '311B92', '263238', '212121', '1A237E', '0D47A1', '1B5E20', '01579B', '006064', '004D40', '', '000000'];
 var forePalette = $('.fore-palette');
 var backPalette = $('.back-palette');
 
@@ -22,6 +22,6 @@ $('.wysiwyg-toolbar a').click(function (e) {
 	} else document.execCommand($(this).data('command'), false, null);
 });
 
-$('#btn-txt').click(function () {
-	$('#txt-test').text($('#editor').html());
+$('form[novalidate="novalidate"]').submit(function (evnt) {
+	$('.wysiwyg-upload').val($('.wysiwyg-raw').html());
 });

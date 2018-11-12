@@ -5,6 +5,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Calibri;
 }
 
 a {
@@ -39,15 +40,16 @@ button {
     cursor: pointer;
 }
 
-.wysiwyg #editor {
-    box-shadow: 0 0 2px #CCC;
-    min-height: 150px;
-    overflow: auto;
-    padding: 1em;
-    margin-top: 20px;
-    resize: vertical;
-    outline: none;
-}
+    .wysiwyg #editor {
+        box-shadow: 0 0 2px #CCC;
+        min-height: 150px;
+        overflow: auto;
+        padding: 1em;
+        margin-top: 20px;
+        resize: vertical;
+        outline: none;
+        min-height: 400px;
+    }
 
 .wysiwyg .wysiwyg-toolbar {
     text-align:center;

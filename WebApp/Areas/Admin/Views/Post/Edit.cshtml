@@ -28,15 +28,12 @@
 			<div class="form-group">
 				@Html.LabelFor(model => model.PostContent, htmlAttributes: new { @class = "control-label col-md-2" })
 				<div class="col-md-10">
-					<textarea class="form-control text-box multi-line valid" id="PostContent" name="PostContent" rows="10">@Model.PostContent</textarea>
+					<textarea class="form-control text-box multi-line valid wysiwyg-upload" id="PostContent" name="PostContent" hidden>@Model.PostContent</textarea>
 					@Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
 
 					<!-- --------:[WYSIWYG Editor Tool]:-------- -->
 					<div class="wysiwyg">
 						<div class="wysiwyg-toolbar">
-							<!--
-				<a href="#" data-command=""><i class="fa fa-"></i></a>
-			-->
 							<a href="#" data-command="undo"><i class="fa fa-undo"></i></a>
 							<a href="#" data-command="redo"><i class="fa fa-repeat"></i></a>
 
@@ -73,11 +70,10 @@
 						</div>
 
 						<div class="wysiwyg-editor">
-							<div id="editor" contenteditable>@Model.PostContent</div>
+							<div class="wysiwyg-raw" id="editor" contenteditable>@Html.Raw(Model.PostContent)</div>
 						</div>
-						<br /><p id="btn-txt">Show HTML</p>
-						<textarea id="txt-test" rows="25" style="width:100%;"></textarea>
 					</div>
+					<!-- End of WYSIWYG Editor-->
 				</div>
 			</div>
 

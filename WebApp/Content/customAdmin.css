@@ -74,6 +74,7 @@
     position: fixed;
     height: 100%;
     box-shadow: 0 0 white, 0 0 white, 10px -15px 10px -5px #ccc, 0 0 white;
+    opacity: 0.85;
 }
 
 .widget::after {
@@ -111,7 +112,7 @@
 .dropdown-btn:after {
     content: "\25bc";
     font-size: 10px;
-    color: #333;
+    color: #000;
     float: right;
     margin-top: 3px;
     margin-left: 5px;
@@ -132,9 +133,10 @@
 
 .dropdown-btn:hover,
 .dropdown-content a:hover {
-    color: #333;
+    color: #000;
     background-color: #ccc;
     border-left-color: #333;
+    opacity: 1.25;
 }
 
 .dropdown-content {
@@ -191,6 +193,9 @@ button:hover {
     color: #fff;
 }
 
+.wysiwyg-upload {
+    display: none;
+}
 /*---------[Upload Media Dialog]--------*/
 ul.media-gallery,
 .media-gallery ul {

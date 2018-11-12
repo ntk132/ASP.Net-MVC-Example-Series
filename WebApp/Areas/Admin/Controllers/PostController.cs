@@ -170,9 +170,6 @@ namespace WebApp.Areas.Admin.Controllers
             if (TryUpdateModel(postToUpdate, "", new string[] { "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus" }))
             {                
                 postToUpdate.PostModified = DateTime.Now;
-                postToUpdate.PostContent.Replace("\r\n", "<br />");
-                postToUpdate.PostContent.Replace("\"", "\\\"");
-
                 postMetaToUpdate.MetaValue = thumbnail;
 
                 db.SaveChanges();
