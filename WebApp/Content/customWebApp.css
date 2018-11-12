@@ -24,7 +24,7 @@ button {
 }
 
 .fa {
-    color: #333;
+    color: inherit;
 }
 
 /*--------:[WYSIWYG Editor Tool]:--------*/
@@ -140,4 +140,8 @@ button {
 .wysiwyg .back-palette a {
     background: #FFF;
     margin-bottom: 2px;
+}
+
+.wysiwyg-upload {
+    display: none;
 }

@@ -52,7 +52,8 @@ $(document).on('click', '.media-box', function () {
 
 		$('.media-gallery').html("");
 		$('#myModal').modal('hide');
-		$('#img-thumbnail').attr('src', $(this).attr('src'));
+		$('#img-upload').attr('src', $(this).attr('src'));
+		$('#upload').attr("value", $(this).attr('src'));
 
 		clicks = 0;
 	}
@@ -72,6 +73,8 @@ $('input[name="files"]').change(function () {
 });
 
 $('#btn-upload').click(function () {
+	alert("");
+
 	var ifrm = $('#ifrm');
 	var src = ifrm.attr('src');
 	var input = $('input[name="files"]');

@@ -107,11 +107,13 @@
     border: none;
     border-left: 5px solid #fff;
     text-align: left;
+    color:#000;
 }
 
 .dropdown-btn:after {
-    content: "\25bc";
-    font-size: 10px;
+    content: "+";
+    font-size: inherit;
+    font-weight:bold;
     color: #000;
     float: right;
     margin-top: 3px;
@@ -128,7 +130,7 @@
 }
 
 .selected:after {
-    content: "\25b2";
+    content: "-";
 }
 
 .dropdown-btn:hover,
@@ -191,10 +193,6 @@ button {
 button:hover {
     background: #666;
     color: #fff;
-}
-
-.wysiwyg-upload {
-    display: none;
 }
 /*---------[Upload Media Dialog]--------*/
 ul.media-gallery,
@@ -261,7 +259,7 @@ ul.media-gallery li:hover,
     color:#fff;
 }
 
-#img-avatar,
+#img-upload,
 #img-thumbnail {
     display: block;
     max-height: 200px;

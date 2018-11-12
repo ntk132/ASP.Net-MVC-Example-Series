@@ -22,6 +22,6 @@ $('.wysiwyg-toolbar a').click(function (e) {
 	} else document.execCommand($(this).data('command'), false, null);
 });
 
-$('form[novalidate="novalidate"]').submit(function (evnt) {
+$('.wysiwyg-raw').blur(function () {
 	$('.wysiwyg-upload').val($('.wysiwyg-raw').html());
 });

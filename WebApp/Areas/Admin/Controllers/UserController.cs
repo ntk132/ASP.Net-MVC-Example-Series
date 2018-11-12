@@ -105,7 +105,7 @@ namespace WebApp.Areas.Admin.Controllers
             var json = serializer.Serialize(newArray); // Convert to JSON
 
             // create meta to store avatar of new user
-            var avatar = Request.Form["avatar"];
+            var avatar = Request.Form["upload"];
             UserMeta userMeta = new UserMeta();
 
             try
@@ -205,7 +205,7 @@ namespace WebApp.Areas.Admin.Controllers
             var json = serializer.Serialize(newArray); // Convert to JSON
 
             // create meta to store avatar of new user
-            var avatar = Request.Form["avatar"];            
+            var avatar = Request.Form["upload"];            
 
             if (TryUpdateModel(userToUpdate, "", new string[] { "UserPass", "UserBio", "Email", "Url", "Links" }))
             {

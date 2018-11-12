@@ -91,18 +91,19 @@ namespace WebApp.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostTitle,PostContent,PostFormat,PostStatus,CommentStatus,CommentCount,UserID")] Post post)
+        public ActionResult Create([Bind(Include = "PostTitle,PostContent,PostFormat,PostStatus,CommentStatus,UserID")] Post post)
         {
             PostMeta postMeta = new PostMeta();
-            var thumbnail = Request.Form["thumbnail"];
+            var thumbnail = Request.Form["upload"];
 
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //
+                    // Default datas - which are automatically defined
                     post.PostRelease = DateTime.Now;
                     post.PostModified = DateTime.Now;
+                    post.CommentCount = 0;
                     post.PostContent.Replace("\n", "<br />");
 
                     db.Posts.Add(post);
@@ -165,7 +166,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             var postToUpdate = db.Posts.Find(id);
             var postMetaToUpdate = db.PostMetas.Where(m => m.PostID ==id.Value && m.MetaKey == "img_thumbnail").Single();
-            var thumbnail = Request.Form["thumbnail"];
+            var thumbnail = Request.Form["upload"];
 
             if (TryUpdateModel(postToUpdate, "", new string[] { "PostTitle", "PostContent", "PostFormat", "PostStatus", "CommentStatus" }))
             {                

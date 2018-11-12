@@ -78,27 +78,11 @@
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.PostFormat, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EnumDropDownListFor(model => model.PostFormat, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.PostFormat, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-		<div class="form-group">
-			@Html.LabelFor(model => model.PostStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EnumDropDownListFor(model => model.PostStatus, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.PostStatus, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-		<div class="form-group">
 			<label class="control-label col-sm-2 col-md-2" for="fb">Thumbnail Image</label>
 			<div class="col-sm-10 col-md-10">
 				<p class="clickMe btn-media">Choose Image</p>
-				<img id="img-thumbnail" src="@ViewBag.Thumbnail" />
-				<input id="thumbnail" name="thumbnail" type="text" value="@ViewBag.Thumbnail" hidden />
+				<img id="img-upload" src="@ViewBag.Thumbnail" />
+				<input id="upload" name="upload" type="text" value="@ViewBag.Thumbnail" hidden />
 				<div id='myModal' class='modal'>
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -140,18 +124,26 @@
 
 	<div class="tab">
 		<div class="form-group">
-			@Html.LabelFor(model => model.CommentStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.PostFormat, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EnumDropDownListFor(model => model.CommentStatus, htmlAttributes: new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.CommentStatus, "", new { @class = "text-danger" })
+				@Html.EnumDropDownListFor(model => model.PostFormat, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.PostFormat, "", new { @class = "text-danger" })
 			</div>
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(model => model.CommentCount, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.PostStatus, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.CommentCount, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.CommentCount, "", new { @class = "text-danger" })
+				@Html.EnumDropDownListFor(model => model.PostStatus, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.PostStatus, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.CommentStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EnumDropDownListFor(model => model.CommentStatus, htmlAttributes: new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.CommentStatus, "", new { @class = "text-danger" })
 			</div>
 		</div>
 

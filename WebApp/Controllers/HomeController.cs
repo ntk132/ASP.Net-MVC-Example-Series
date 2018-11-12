@@ -10,7 +10,16 @@ namespace WebApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            bool log = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (log)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Contact");
+            }            
         }
 
         public ActionResult About()

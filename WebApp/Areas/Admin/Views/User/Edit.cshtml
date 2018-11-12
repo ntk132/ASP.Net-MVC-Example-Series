@@ -39,8 +39,8 @@
 			</label>
 			<div class="col-sm-10 col-md-10">
 				<p class="clickMe btn-media">Choose Image</p>
-				<img id="img-avatar" src="@ViewBag.Avatar" />
-				<input id="avatar" name="avatar" type="text" value="@ViewBag.Avatar" hidden />
+				<img id="img-upload" src="@ViewBag.Avatar" />
+				<input id="upload" name="upload" type="text" value="@ViewBag.Avatar" hidden />
 				<div id='myModal' class='modal'>
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -156,96 +156,3 @@
 <div>
 	@Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts
-{
-	<script type="text/javascript">
-		$(function () {
-			var selectStr = "";
-
-			$('.clickMe').click(function () {
-				/*$.ajax({
-					url: "/User/LoadMedia",
-					//datatype: "html",
-					//type: "POST",
-					//contentType: "application/json; charset=utf-8",
-					//cache: false,
-					//data: {},
-					success: function (data) {
-						$('#test').html(data);
-						$('#myModal').modal('show');
-					},
-					error: function () {
-						alert("Dynamic content load failed.");
-					}
-				});*/
-				var url = "/Admin/User/LoadMedia";
-				$.get(url, null, function (data) {
-					var tmp = "";
-
-					$.each($.parseJSON(data), function (index, value) {
-						//tmp += "<li><a class=\"media-box\"><img src=\"" + value + "\" /></a></li>";
-						tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
-					});
-
-					$('.media-gallery').html(tmp);
-					$('#myModal').modal('show');
-				});
-			});
-			//$("#closebtn").on('click',function(){
-			//    $('#myModal').modal('hide');
-
-			$("#closbtn").click(function () {
-				$('.media-gallery').html("");
-				$('#myModal').modal('hide');
-			});
-
-			$("#btn-cancel").click(function () {
-				$('.media-gallery').html("");
-				$('#myModal').modal('hide');
-			});
-
-			//
-			$("#btn-select").click(function () {
-				$('.media-gallery').html("");
-				$('#myModal').modal('hide');
-
-				$('#img-avatar').attr('src', selectStr);
-				$('#avatar').attr("value", selectStr);
-			});
-
-			$(document).on('click', '.media-box', function () {
-				$('media-box').css("border", "0px white");
-				$('media-box').css("padding", "0px");
-
-				$(this).css("border", "3px green");
-				$(this).css("padding", "2px");
-				selectStr = $(this).attr('src');
-			});
-
-			$('#frm-media-upload').submit(function (event) {
-				// Stop form's submitting defaultly
-				event.preventDefault();
-
-				// Gte value to submit
-				var $frm = $(this),
-					files = $frm.find('input[name="files"]').val(),
-					url = "/Admin/User/Upload"/*$frm.attr('action')*/;
-
-				// Sending data using post
-				var posting = $.post(url, { files: files });
-
-				posting.done(function (data) {
-					var tmp = "";
-
-					$.each($.parseJSON(data), function (index, value) {
-						tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
-					});
-
-					$('.media-gallery').html(tmp);
-					$('#myModal').modal('show');
-				});
-			});
-		});
-	</script>
-}

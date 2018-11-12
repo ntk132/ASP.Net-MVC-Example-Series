@@ -14,7 +14,6 @@
 		<form action="" name="frm-media-upload" id="frm-media-upload" method="post" enctype="multipart/form-data">
 			@Html.AntiForgeryToken()
 			<input type="file" name="files" id="files" multiple />
-			<ul id="lst-img"></ul>
 			<br />
 			<button id="btn-upload" runat="server" type="submit">Upload</button>
 		</form>
