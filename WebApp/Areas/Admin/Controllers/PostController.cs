@@ -105,6 +105,7 @@ namespace WebApp.Areas.Admin.Controllers
                     post.PostModified = DateTime.Now;
                     post.CommentCount = 0;
                     post.PostContent.Replace("\n", "<br />");
+                    post.User = db.Users.Where(u => u.UserID == post.UserID).Single();
 
                     db.Posts.Add(post);
                     db.SaveChanges();
@@ -117,7 +118,7 @@ namespace WebApp.Areas.Admin.Controllers
                     db.PostMetas.Add(postMeta);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = post.PostID });
                 }
             }
             catch (DataException /*de*/)
@@ -128,6 +129,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             ViewBag.Thumbnail = thumbnail;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", post.UserID);
+
             return View(post);
         }
 
@@ -174,7 +176,6 @@ namespace WebApp.Areas.Admin.Controllers
                 postMetaToUpdate.MetaValue = thumbnail;
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
             ViewBag.Thumbnail = thumbnail;

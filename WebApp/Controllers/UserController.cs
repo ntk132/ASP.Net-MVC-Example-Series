@@ -57,6 +57,8 @@ namespace WebApp.Controllers
                     break;
             }
 
+            ViewBag.Links = "";
+
             int pageSize = 25;
             int pageNumber = (page ?? 1);
 

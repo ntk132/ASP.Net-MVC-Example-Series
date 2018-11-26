@@ -6,7 +6,6 @@ $('.clickMe').click(function () {
 		var tmp = "";
 
 		$.each($.parseJSON(data), function (index, value) {
-			//tmp += "<li><a class=\"media-box\"><img src=\"" + value + "\" /></a></li>";
 			tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
 		});
 
@@ -23,7 +22,6 @@ $("#closbtn").click(function () {
 });
 
 $("#btn-cancel").click(function () {
-	alert($('.media-box').length);
 	$('.media-gallery').html("");
 	$('#myModal').modal('hide');
 });
@@ -61,42 +59,21 @@ $(document).on('click', '.media-box', function () {
 	e.preventDefault();
 });
 
-$('input[name="files"]').change(function () {
-	var files = $(this).get(0).files;
-	var txt = "";
+$('#ifrm').load(function () {
+	$(this).contents().find('#frm-media-upload').submit(function () {
 
-	for (var i = 0; i < files.length; i++) {
-		txt += "<li><p>" + files[i].name + "</p></li>";
-	}
+		$.get("/Admin/Upload/LoadMedia", null, function (data) {
+			var tmp = "";
 
-	$('#lst-img').html(txt);
+			$.each($.parseJSON(data), function (index, value) {
+				tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
+			});
+
+			$('.media-gallery').html(tmp);
+		});
+	});
 });
 
-$('#btn-upload').click(function () {
-	alert("");
-
-	var ifrm = $('#ifrm');
-	var src = ifrm.attr('src');
-	var input = $('input[name="files"]');
-	var url = "/Admin/Upload/LoadMedia";
-
-	ifrm.contents().find('input[name="files"]').get(0).files = input.get(0).files;
-	ifrm.contents().find('#frm-media-upload').submit();
-
-	$('#lst-img').html("");
-	$('.media-gallery').html("");
-		
-	$.get(url, null, function (data) {
-		var tmp = "";
-
-		$.each($.parseJSON(data), function (index, value) {
-			tmp += "<li><img class=\"media-box\" src=\"" + value + "\" /></li>";
-		});
-
-		$('.media-gallery').html(tmp);
-	});
-
-	// Clear data in input
-	input.val("");
-	ifrm.attr('src', src);
+$('.cata-delete').click(function () {
+	$(this).parent().remove();
 });

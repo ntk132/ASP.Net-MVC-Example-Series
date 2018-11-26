@@ -150,6 +150,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TermController.cs" />
     <Compile Include="Areas\Admin\Controllers\UploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\AspAdmin.cs" />
@@ -238,15 +239,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Admin\Views\User\Upload.cshtml" />
     <Content Include="Areas\Admin\Views\Upload\Upload.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_wysiwyg.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Upload.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.comment.js" />
     <Content Include="Scripts\jquery.editor.tool.js" />
+    <Content Include="Scripts\jquery.index.js" />
     <Content Include="Scripts\jquery.upload.admin.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -297,9 +301,12 @@
     <Content Include="Views\Home\PageContact.cshtml" />
     <Content Include="Views\Home\PageBlog.cshtml" />
     <Content Include="Views\Home\PageProduct.cshtml" />
+    <Content Include="Views\Shared\_CommentForm.cshtml" />
+    <Content Include="Views\Shared\_CommentFormNone.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Term\" />
     <Folder Include="Images\Desktop\Avatar\" />
     <Folder Include="Images\Desktop\Banner\" />
     <Folder Include="Images\Desktop\Food\" />

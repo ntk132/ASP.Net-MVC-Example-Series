@@ -1,15 +1,38 @@
-﻿*, *::before, *::after {
+﻿/*--------------------------------------*/
+/*--------:[Color Theme Define]:--------*/
+:root {
+    --primary-color: #212121;
+    --primary-variant: #BDBDBD;
+    --secondary-color: #FB8C00;
+    --secondary-variant: #FFB74D;
+    --background-color: #FFFFFF;
+    --surface-color: #FFFFFF;
+    --error-color: #B00020;
+    --on-primary: #FFFFFF;
+    --on-secondary: #000000;
+    --on-background: #000000;
+    --on-surface: #000000;
+    --on-error: #FFFFFF;
+}
+/*------------:[End Define]:------------*/
+/*--------------------------------------*/
+
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
 body {
     padding-top: 50px;
-    padding-bottom: 20px;
     font-family: Calibri;
 }
 
 a {
     text-decoration: none;
+    color: var(--secondary-color);
+}
+a:hover {
+    text-decoration: none;
+    color: var(--on-secondary);
 }
 
 img {
@@ -23,33 +46,34 @@ button {
     background: inherit;
 }
 
-.fa {
-    color: inherit;
-}
-
 /*--------:[WYSIWYG Editor Tool]:--------*/
 /*---- For both admin(post's content) and user(comment) side ----*/
 .wysiwyg {
     margin: 0 auto;
     width: auto;
     font-family:'Dosis';
-    background:#fff;
+    background: var(--background-color);
 }
 
 .wysiwyg a {
     cursor: pointer;
 }
 
-    .wysiwyg #editor {
-        box-shadow: 0 0 2px #CCC;
-        min-height: 150px;
-        overflow: auto;
-        padding: 1em;
-        margin-top: 20px;
-        resize: vertical;
-        outline: none;
-        min-height: 400px;
-    }
+.wysiwyg #editor {
+    background:var(--background-color);
+    border: 1px solid var(--primary-variant);
+    box-shadow: 0 0 2px var(--primary-variant);
+    overflow: auto;
+    padding: 1em;
+    margin-top: 20px;
+    resize: vertical;
+    outline: none;
+    min-height: 400px;
+}
+
+.wysiwyg #editor:focus {
+    border: 1px solid var(--secondary-variant);
+}
 
 .wysiwyg .wysiwyg-toolbar {
     text-align:center;
@@ -58,8 +82,8 @@ button {
 .wysiwyg .wysiwyg-toolbar a,
 .wysiwyg .fore-wrapper,
 .wysiwyg .back-wrapper {
-    border: 1px solid #AAA;
-    background: #FFF;
+    border: 1px solid var(--primary-color);
+    background: var(--background-color);
     border-radius: 1px;
     color: black;
     padding: 5px;
@@ -68,14 +92,12 @@ button {
     margin-top: 10px;
     display: inline-block;
     text-decoration: none;
-    box-shadow: 0px 1px 0px #CCC;
+    box-shadow: 0px 1px 0px var(--primary-variant);
 }
 
-.wysiwyg .wysiwyg-toolbar a:hover,
-.wysiwyg .fore-wrapper:hover,
-.wysiwyg .back-wrapper:hover {
-    background: #f2f2f2;
-    border-color: #8c8c8c;
+.wysiwyg .wysiwyg-toolbar a:hover {
+    background: var(--secondary-variant);
+    border-color: var(--secondary-variant);
 }
 
 .wysiwyg a[data-command='redo'],
@@ -104,12 +126,12 @@ button {
     border-radius: 3px;
     margin: 2px;
     width: 1em;
-    border: 1px solid #CCC;
+    border: 1px solid var(--primary-variant);
 }
 
 .wysiwyg a.palette-item:hover {
-    border: 1px solid #CCC;
-    box-shadow: 0 0 3px #333;
+    border: 1px solid var(--primary-variant);
+    box-shadow: 0 0 3px var(--primary-color);
 }
 
 .wysiwyg .fore-palette,
@@ -130,18 +152,30 @@ button {
     position: absolute;
     padding: 3px;
     width: 160px;
-    background: #FFF;
-    border: 1px solid #DDD;
-    box-shadow: 0 0 5px #CCC;
+    background: var(--background-color);
+    border: 1px solid var(--primary-variant);
+    box-shadow: 0 0 5px var(--primary-variant);
     height: 70px;
 }
 
 .wysiwyg .fore-palette a,
 .wysiwyg .back-palette a {
-    background: #FFF;
+    background: var(--background-color);
     margin-bottom: 2px;
 }
 
 .wysiwyg-upload {
     display: none;
+}
+
+/*===========================================================================*/
+/*=============================== Pagination ================================*/
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
 }

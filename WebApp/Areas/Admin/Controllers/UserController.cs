@@ -10,7 +10,6 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using System.Windows.Forms;
 using WebApp.Context;
 using WebApp.Models;
 
@@ -131,7 +130,7 @@ namespace WebApp.Areas.Admin.Controllers
 
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = user.UserID });
                 }
             }
             catch (DataException /*de*/)
@@ -216,9 +215,13 @@ namespace WebApp.Areas.Admin.Controllers
                 db.Entry(userMetaToUpdate).State = EntityState.Modified;
 
                 db.SaveChanges();
-
-                return RedirectToAction("Index");
             }
+
+            ViewBag.fb = array[0];
+            ViewBag.yt = array[1];
+            ViewBag.ins = array[2];
+            ViewBag.web = array[3];
+            ViewBag.Avatar = avatar;
 
             return View(userToUpdate);
         }

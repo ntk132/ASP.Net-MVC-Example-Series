@@ -1,6 +1,6 @@
 ﻿@model WebApp.Models.Post
 
-<br />
+@Scripts.Render("~/bundles/comment")
 
 <div class="row">
 	<div class="col-md-3">
@@ -26,6 +26,33 @@
 				<div id="post-hid"><pre>@Html.Raw(Model.PostContent)</pre></div>
 				<div id="post-txt"></div>
 			</div>
+		</div>
+
+		<div class="comment-area">
+			@{
+				// If this post allow post comment into this post
+				// then show the comment-flow and comment form
+				if (Model.CommentStatus == WebApp.Models.CommentStatus.Open)
+				{
+					foreach (var comment in Model.Comments)
+					{
+						Html.RenderPartial("_CommentForm", comment);
+					}
+
+					<div class="comment-option">
+						<button class="btn-comment-reply">Reply</button>
+					</div>
+
+					<h4>Leave a comment</h4>
+					Html.RenderPartial("_CommentFormNone");
+				}
+				else
+				{
+					<div class="comment-lock">
+						<h3>The comment is disable for this post!</h3>
+					</div>
+				}
+			}
 		</div>
 	</div>
 </div>

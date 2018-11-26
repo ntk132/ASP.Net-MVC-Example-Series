@@ -1,0 +1,57 @@
+﻿@model WebApp.Models.Comment
+
+@{ 
+	<div class="comment-block">
+		<div class="row">
+			<div class="col-sm-1 col-md-1">
+				<img class="comment-avatar" src=""/>
+			</div>
+			<div class="col-sm-11 col-md-11">
+				<div class="comment-header">
+					<h4><a href="#">@Model.CommentAuthor UserName</a></h4>
+					<p class="comment-meta">@Model.CommentDateReleased Today is woderful day</p>
+					<p class="comment-meta">@Model.CommentMetas Is it right?</p>
+				</div>
+				<div class="comment-content">
+					@Model.CommentContent
+					Simple comment's content.
+					Have any ideas else?
+
+					Leave the comment under this below.
+				</div>
+				<div class="comment-option">
+					<button class="btn-comment-reply">Reply</button>
+				</div>
+			</div>
+		</div>
+
+		<ul class="sub-comment">
+			<li>
+				<div class="comment-block">
+					<div class="row">
+						<div class="col-sm-1 col-md-1">
+							<img class="comment-avatar" src="" />
+						</div>
+						<div class="col-sm-11 col-md-11">
+							<div class="comment-header">
+								<h4><a href="#">@Model.CommentAuthor Nickname</a></h4>
+								<p class="comment-meta">@Model.CommentDateReleased Tomorrow</p>
+								<p class="comment-meta">@Model.CommentMetas I can fly high!</p>
+							</div>
+							<div class="comment-content">
+								@Model.CommentContent
+								The next simple comment's content.
+								If having any ideas?
+
+								Leave the comment under this below.
+							</div>
+							<div class="comment-option">
+								<button class="btn-comment-reply">Reply</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+}

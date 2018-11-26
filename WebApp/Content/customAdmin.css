@@ -1,15 +1,33 @@
 ﻿/*===========================================================================*/
 /*=============================== Admin Side ================================*/
 
+/*--------:[Color Theme Define]:--------*/
+:root {
+    --primary-color: #212121;
+    --primary-variant: #EEEEEE;
+    --secondary-color: #0277BD;
+    --secondary-variant: #81D4FA;
+    --background-color: #FFFFFF;
+    --surface-color: #FFFFFF;
+    --error-color: #B00020;
+    --on-primary: #FFFFFF;
+    --on-secondary: #000000;
+    --on-background: #000000;
+    --on-surface: #000000;
+    --on-error: #FFFFFF;
+}
+/*------------:[End Define]:------------*/
+
 /*---------[Main Dashboard - Record]--------*/
 .count-bar {
     padding: 10px 0px;
 }
 
 .count {
-    background: #fff;
+    background: var(--background-color);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding:10px;
+    margin-top:10px;
 }
 .left-side,
 .right-side {
@@ -19,12 +37,12 @@
     padding: 0 20px;
 }
 .donut-chart {
-    height:60px;
-    width:60px;
-    position:relative;
-    border-radius:50%;
-    overflow:hidden;
-    background: #eee;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--primary-variant);
 }
 
 .donut-chart .slice {
@@ -43,7 +61,7 @@
     left: 5px;
     width: 50px;
     height: 50px;
-    background: #fff;
+    background: var(--background-color);
 }
 
 .donut-chart .chart-center span {
@@ -64,7 +82,7 @@
     clip: rect(0 30px 60px 0);
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-    background: #eee;
+    background: var(--primary-variant);
 }
     /*--------[Menu Dashboard]--------*/
 .widget {
@@ -93,36 +111,32 @@
 
 .widget ul li {
     width: 100%;
-    background-color: #fff;
+    background-color: var(--background-color);
 }
 
 .dropdown-btn,
 .dropdown-content a {
     float: none;
     display: block;
-    padding: 10px;
+    padding: 5px 10px;
+    margin: 5px 0;
     width: 100%;
     background: inherit;
     outline: none;
     border: none;
-    border-left: 5px solid #fff;
+    border-left: 2px solid var(--background-color);
     text-align: left;
-    color:#000;
+    color: #000;
 }
 
 .dropdown-btn:after {
     content: "+";
-    font-size: inherit;
+    font-size: 16px;
     font-weight:bold;
-    color: #000;
+    width: 10px;
+    color: var(--on-surface);
     float: right;
-    margin-top: 3px;
     margin-left: 5px;
-}
-
-.selected {
-    background-color: #ccc;
-    border-left-color: #333;
 }
 
 .selected + .dropdown-content {
@@ -133,25 +147,22 @@
     content: "-";
 }
 
-.dropdown-btn:hover,
+a.entered,
 .dropdown-content a:hover {
-    color: #000;
-    background-color: #ccc;
     border-left-color: #333;
     opacity: 1.25;
 }
 
 .dropdown-content {
     padding: 0 20px;
-    background-color: #fff;
-    display:none;
+    background-color: var(--background-color);
+    display: none;
     overflow: hidden;
-    transition: display 0.2s ease-out;
 }
 
 .dropdown-content a {
     text-decoration: none;
-    padding-left: 40px;
+    margin-left: 40px;
     color: black;
 }
 
@@ -159,40 +170,37 @@
     float: right;
     width: calc(100% - 250px);
     height: auto;
-    background-color: #eee;
+    background-color: var(--primary-variant);
     margin-left: 50px;
     padding: 20px;
 }
 
 .mainboard table {
-    background-color: #fff;
+    background-color: var(--background-color);
 }
 
 /*---------[Edit Page]--------*/
 .tab {
     padding: 20px;
-    background:#fff;
+    background: var(--background-color);
     box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
     margin: 10px;
 }
 
 input[type="submit"] {
-    background:#eee;
-    border-radius:0;
+    background: var(--secondary-variant);
+    color: var(--on-secondary);
+    border-radius: 0;
+    padding: 6px 12px;
+    margin: 6px 6px 0 0;
 }
-
 input[type="submit"]:hover {
-    background: #ccc;
-    color:#fff;
+    background: var(--secondary-color);
+    color: var(--on-primary);
 }
 
 button {
     background: #ccc;
-}
-
-button:hover {
-    background: #666;
-    color: #fff;
 }
 /*---------[Upload Media Dialog]--------*/
 ul.media-gallery,
@@ -234,7 +242,7 @@ ul.media-gallery li:hover,
 }
 .modal-content {
     position: relative;
-    background-color: #fff;
+    background-color: var(--background-color);
     outline: 0;
     -webkit-box-shadow: 0 3px 9px rgba(0,0,0,0.5);
     box-shadow: 0 3px 9px rgba(0,0,0,0.5);
@@ -246,17 +254,39 @@ ul.media-gallery li:hover,
     width: 100%;
 }
 
-.btn-media {
+#ifrm {
     border:none;
     outline:none;
-    background:#eee;
-    cursor:pointer;
-    display:inline-block;
-    padding: 5px;
+    overflow: hidden;
+    height: 85px;
 }
-.btn-media:hover {
-    background:#ccc;
-    color:#fff;
+
+#ifrm body {
+    padding: 0;
+    margin: 0;
+}
+
+.btn-media,
+#btn-upload,
+#btn-select,
+#btn-cancel {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: var(--secondary-variant);
+    color: var(--on-surface);
+    display: inline-block;
+    padding: 6px 12px;
+    margin:6px;
+    margin-left:0;
+}
+
+.btn-media:hover,
+#btn-upload:hover,
+#btn-select:hover,
+#btn-cancel:hover {
+    background: var(--secondary-color);
+    color: var(--surface-color);
 }
 
 #img-upload,
@@ -265,4 +295,61 @@ ul.media-gallery li:hover,
     max-height: 200px;
     max-width: 200px;
     width: auto;
+}
+
+/*---------[catagory & Tag]--------*/
+ul.cata-list {
+    list-style: none;
+    list-style-type: none;
+    padding: 6px 12px;
+    display: inline;
+}
+
+li.cata-item {
+    display: inline-block;
+    margin: 0 5px 15px 0;
+    cursor:pointer;
+}
+
+.cata-item span {
+    border-top-left-radius: 15px 15px;
+    border-bottom-left-radius: 15px 15px;
+    padding: 5px 3px 5px 10px;
+    color: #333;
+}
+.cata-item a {
+    text-decoration: none;
+    border-top-right-radius: 15px 15px;
+    border-bottom-right-radius: 15px 15px;
+    padding: 5px 10px 5px 7px;
+    color: var(--on-primary);
+}
+.cata-item:hover a {
+    background:#ccc;
+}
+
+.cata-item span,
+.cata-item a {
+    background: #ddd;
+    text-align: center;
+}
+
+.cata-add,
+a.cata-add {
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 50% 50%;
+    cursor:pointer;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cata-add:hover,
+a.cata-add:hover {
+    color: var(--on-primary);
+    background:#333;
 }

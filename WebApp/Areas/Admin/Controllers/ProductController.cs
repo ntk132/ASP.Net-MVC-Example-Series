@@ -83,6 +83,7 @@ namespace WebApp.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName");
+
             return View();
         }
 
@@ -115,7 +116,7 @@ namespace WebApp.Areas.Admin.Controllers
 
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", new { id = product.ProductID });
                 }
             }
             catch (DataException /*de*/)
@@ -176,7 +177,6 @@ namespace WebApp.Areas.Admin.Controllers
                     productMetaToUpdate.MetaValue = icon;
 
                     db.SaveChanges();
-                    return RedirectToAction("Index");
                 }
                 catch (DataException /* dex */)
                 {
@@ -187,6 +187,7 @@ namespace WebApp.Areas.Admin.Controllers
 
             ViewBag.Icon = icon;
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", productToUpdate.UserID);
+
             return View(productToUpdate);
         }
 

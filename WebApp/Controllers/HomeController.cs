@@ -18,7 +18,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                return RedirectToAction("Contact");
+                return RedirectToAction("Login");
             }            
         }
 

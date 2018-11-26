@@ -7,15 +7,19 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width" />
+
+	@Styles.Render("~/Admin/css")
+	@Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
 	<div>
-		<form action="" name="frm-media-upload" id="frm-media-upload" method="post" enctype="multipart/form-data">
+		<form action="@Request.Url.AbsolutePath" name="frm-media-upload" id="frm-media-upload" method="post" enctype="multipart/form-data">
 			@Html.AntiForgeryToken()
 			<input type="file" name="files" id="files" multiple />
 			<br />
-			<button id="btn-upload" runat="server" type="submit">Upload</button>
+			<br />
+			<button id="btn-upload" type="submit">Upload</button>
 		</form>
 	</div>
 </body>

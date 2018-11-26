@@ -29,6 +29,12 @@ namespace WebApp
             bundles.Add(new ScriptBundle("~/bundles/wysiwyg").Include(
                 "~/Scripts/jquery.editor*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/index").Include(
+                "~/Scripts/jquery.index*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/comment").Include(
+                "~/Scripts/jquery.comment*"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));

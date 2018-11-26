@@ -37,7 +37,7 @@ namespace WebApp.Areas.Admin.Controllers
         /// <returns>//List of pathes 's all file in server (included new list)</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void Upload(HttpPostedFileBase[] files)
+        public ActionResult Upload(HttpPostedFileBase[] files)
         {
             if (ModelState.IsValid && files != null)
             {
@@ -58,7 +58,9 @@ namespace WebApp.Areas.Admin.Controllers
                         ViewBag.Message = "Upload fail!";
                     }
                 }
-            }          
+            }
+
+            return View();
         }
 
         /// <summary>

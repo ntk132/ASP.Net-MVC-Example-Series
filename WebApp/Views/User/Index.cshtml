@@ -44,19 +44,42 @@
 
 					<img src="@src" alt="" style="width:100%;" />
 				}
-				<div class="cart-header">
+				<div class="card-header">
 					<h2>@Html.ActionLink(item.UserName, "Details", new { id = item.UserID })</h2>
 				</div>
-				<div class="cart-content">
-					<p class="title"></p>
+				<div class="card-content">
 					<p>@Html.DisplayFor(modelItem => item.UserBio)</p>
 					<p>@Html.DisplayFor(modelItem => item.Email)</p>
 				</div>
-				<div class="cart-meta">
+				<div class="card-meta">
 					<p>@Html.DisplayFor(modelItem => item.UserRelease)</p>
-					<p>@Html.DisplayFor(modelItem => item.Links)</p>
+					@{
+						if (item.Links != null || item.Links != "")
+						{
+							String[] result = { "", "", "", "" };
+							var links = item.Links;
+							links = links.Replace("\"link\":", "").Replace("{", "").Replace("}", "").Replace(":", "").Replace("[", "").Replace("]", "").Replace("\"", "");
+							result = links.Split(',');
+
+							if (result[0] != null && result[0] != "")
+							{
+								<span class="links fb"><a href="@result[0]"><i class="fa fa-facebook"></i></a></span>
+							}
+							if (result[1] != null && result[1] != "")
+							{
+								<span class="links yt"><a href="@result[1]"><i class="fa fa-youtube"></i></a></span>
+							}
+							if (result[2] != null && result[2] != "")
+							{
+								<span class="links ins"><a href="@result[2]"><i class="fa fa-instagram"></i></a></span>
+							}
+							if (result[3] != null && result[3] != "")
+							{
+								<span class="links web"><a href="@result[3]"><i class="fa fa-globe"></i></a></span>
+							}
+						}
+					}
 				</div>
-				<p><button>Contact</button></p>
 			</div>			
 		</div>
 	}
