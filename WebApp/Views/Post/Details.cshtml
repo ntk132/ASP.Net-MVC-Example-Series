@@ -1,15 +1,25 @@
 ﻿@model WebApp.Models.Post
 
-@Scripts.Render("~/bundles/comment")
-
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-2">
 		@{
 			var str = Model.PostMetas.Where(m => m.MetaKey == "img_thumbnail").Single();
-			<img src="@str.MetaValue" alt="" style="width:100%;" />
+			<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+
+			<div class="author-box">
+				<div class="author-content">
+					<h4>@Html.ActionLink(Model.User.UserName, "Details", "User", new { id = Model.UserID}, null)</h4>
+					<p>@Model.User.Email</p>
+				</div>
+				<div class="author-meta">
+					<p>@Model.User.UserRelease</p>
+					<p>@Model.User.UserBio</p>
+					<p>@Model.User.Url</p>
+				</div>
+			</div>
 		}
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-8">
 		<div class="single post">
 			<div class="post-header">
 				<h3>@Html.DisplayFor(model => model.PostTitle)</h3>
@@ -23,7 +33,7 @@
 			</div>
 
 			<div class="post-content">
-				<div id="post-hid"><pre>@Html.Raw(Model.PostContent)</pre></div>
+				<div id="post-hid">@Html.Raw(Model.PostContent)</div>
 				<div id="post-txt"></div>
 			</div>
 		</div>
@@ -53,6 +63,11 @@
 					</div>
 				}
 			}
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="news">
+			<h4 class="news-header">Top 5 Lasted Posts</h4>
 		</div>
 	</div>
 </div>

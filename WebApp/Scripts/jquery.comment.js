@@ -1,8 +1,4 @@
-﻿var variable = "";
-
-alert(variable);
-
-$(".btn-comment-reply").click(function () {
+﻿$('.btn-comment-reply').click(function () {
 	var frm = $('form[class="comment-form"]');
 	var tmp = "<li>" + frm.html() + "</li>";
 	var block = $(this).parent("comment-block");
@@ -14,4 +10,7 @@ $(".btn-comment-reply").click(function () {
 	}
 });
 
-$('').click();
+$('form[class="comment-form"]').submit(function (evt) {
+	evt.preventDefault();
+	alert("Not submit anymore!")
+});

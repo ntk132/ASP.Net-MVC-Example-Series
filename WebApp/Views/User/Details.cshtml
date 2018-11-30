@@ -1,95 +1,64 @@
 ﻿@model WebApp.Models.User
 
 @{
-	ViewBag.Title = "Details";
+	ViewBag.Title = Model.UserName + " - Details";
 }
 
-<h2>Details</h2>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+		<div class="author">
+			<div class="author-ava">
+				@{ 
+					var str = Model.UserMetas.Where(m => m.MetaKey == "avatar").Single();
+					string src = (str.MetaValue.ToString() != "" ? str.MetaValue.ToString() : "/Images/Avatar/non.jpg");
+				}
+				<img src="@src"/>
+			</div>
+			<div class="author-content">
+				<h4>@Model.UserName</h4>
+				<p>@Model.UserRelease</p>
+				<p>@Model.UserBio</p>
+				<p>@Model.Url</p>
+				@{
+					if (Model.Links != null || Model.Links != "")
+					{
+						String[] result = { "", "", "", "" };
+						var links = Model.Links;
+						links = links.Replace("\"link\":", "").Replace("{", "").Replace("}", "").Replace(":", "").Replace("[", "").Replace("]", "").Replace("\"", "");
+						result = links.Split(',');
 
-<div>
-	<h4>User</h4>
-	<hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.UserName)
-		</dt>
+						if (result[0] != null && result[0] != "")
+						{
+							<p class="links fb"><a href="@result[0]"><i class="fa fa-facebook"></i></a></p>
+						}
+						if (result[1] != null && result[1] != "")
+						{
+							<p class="links yt"><a href="@result[1]"><i class="fa fa-youtube"></i></a></p>
+						}
+						if (result[2] != null && result[2] != "")
+						{
+							<p class="links ins"><a href="@result[2]"><i class="fa fa-instagram"></i></a></p>
+						}
+						if (result[3] != null && result[3] != "")
+						{
+							<p class="links web"><a href="@result[3]"><i class="fa fa-globe"></i></a></p>
+						}
+					}
+				}
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		<h3>List of posts</h3>
 
-		<dd>
-			@Html.DisplayFor(model => model.UserName)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.UserPass)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.UserPass)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.UserRelease)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.UserRelease)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.UserBio)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.UserBio)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Email)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Email)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Url)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Url)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Links)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Links)
-		</dd>
-
-	</dl>
+		@foreach (var post in Model.Posts)
+		{
+			<h4>@Html.ActionLink(post.PostTitle, "Details", "Post", new { id = post.PostID }, null)</h4>
+			<p>@post.PostRelease | @post.Comments commetns | @post.PostStatus</p>
+		}
+	</div>
 </div>
+
 <p>
 	@Html.ActionLink("Back to List", "Index")
 </p>
-
-@foreach (var meta in Model.UserMetas)
-{
-	if (meta.MetaKey.ToString() == "avatar")
-	{
-		<img src="@meta.MetaValue" />
-	}
-}
-
-<h4>List of posts</h4>
-
-@foreach (var post in Model.Posts)
-{
-	<p>@post.PostTitle</p>
-}
-
-<h4>List of products</h4>
-
-@foreach (var product in Model.Products)
-{
-	<p>@product.ProductName</p>
-}

@@ -15,11 +15,6 @@
 }
 /*------------:[End Define]:------------*/
 
-footer,
-.section {
-    padding: 25px;
-}
-
 /*===========================================================================*/
 /*=============================== Page About ================================*/
 
@@ -123,22 +118,20 @@ footer,
 /*--------[User card - Portfolio]--------*/
 .card {
     box-shadow: 0 4px 8px 0 var(--primary-variant);
-    margin: auto;
+    margin: 10px;
     text-align: center;
     margin: 10px;
-    filter: brightness(50%);
-    border-radius: 10px;
+    filter: brightness(100%);
+    border-radius: 2px;
     transition: filter 0.3s;
     transition: box-shadow 0.3s;
-    transition: border-radius 0.3s;
 }
 .card:hover {
-    box-shadow: 0 8px 12px 0 var(--primary-color);
-    filter: brightness(100%);
+    box-shadow: 0 8px 12px 0 var(--primary-color);    
     border-radius: 0;
 }
 .card:hover img {
-    border-radius: 0;
+    filter: brightness(75%);
 }
 .card-header {
     font-weight: bold;
@@ -157,9 +150,9 @@ footer,
     padding: 5px 0;
 }
 .card img {
-    border-radius: 10px 10px 0 0;
+    border-radius: 2px 2px 0 0;
     transition: border-radius 0.2s;
-    max-height:100%;
+    max-height:300px;
     max-width:100%;
 }
 .card a {
@@ -229,27 +222,37 @@ footer,
 .th-list {
     max-width: 50% !important;
     float: left;
-    text-align: left;
+    text-align: center;
     filter: brightness(100%) !important;
     height:100%;
     position:relative;
 }
 img.th-list {
     border-radius: 0;
+    max-height: 225px;
+    max-width: 250px !important;
 }
 .card-th.th-list {
-    padding: 15px;
-    
+    padding: 5px 15px;
+    min-height: 225px;
+    min-width: 250px;
 }
 .card-th.th-list .card-header,
 .card-th.th-list .card-content,
 .card-th.th-list .card-meta,
 .card-th.th-list .btn-readmore{
-    margin: 10px 0;
+    margin: 0px 0;
+}
+
+.card-th.th-list .card-header {
+    font-size: 20px;
+    font-weight:bold;
+    text-transform:uppercase;
 }
 
 .btn-readmore {
     display:none;
+    border-radius: 20px;
 }
 
 .card-th.th-list .btn-readmore {
@@ -268,8 +271,15 @@ img.th-list {
 /*--------:[Single Post]:--------*/
 .single .post {
 }
+.single-post-img {
+    width:200px !important;
+    height:200px !important;
+    border-radius: 50%;
+    display:block;
+    margin: 0 auto;
+    padding:20px;
+}
 .post .post-header {
-
 }
 .post .post-content pre {
     display:block;
@@ -288,7 +298,12 @@ img.th-list {
     color: var(--primary-variant);
     font-style:italic;
 }
-
+/*--------:[Author Box]:--------*/
+.author-box {
+    text-align:center;
+    padding: 20px;
+    margin: 20px 0;
+}
 /*===========================================================================*/
 /*=============================== Comment Block ================================*/
 .comment-block {
@@ -365,4 +380,39 @@ img.th-list {
 .comment-form button[type="submit"]:hover {
     background: var(--secondary-color);
     color: var(--on-primary);
+}
+/*===========================================================================*/
+/*=============================== Comment Block =============================*/
+.author {
+    text-align:center;
+}
+.author-ava img {
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    background-size: cover;
+    background-clip: padding-box;
+    background-position: center center;
+    padding:20px;
+}
+.author-content {
+    padding:20px;
+    margin:10px 0;
+}
+.author .fb a i,
+.author .yt a i,
+.author .ins a i,
+.author .web a i {
+    background: inherit;
+    color: var(--on-secondary);
+    margin: 0;
+}
+
+.author .fb a i:hover,
+.author .yt a i:hover,
+.author .ins a i:hover,
+.author .web a i:hover {
+    color: var(--secondary-color);
 }

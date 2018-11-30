@@ -22,6 +22,10 @@ $('.wysiwyg-toolbar a').click(function (e) {
 	} else document.execCommand($(this).data('command'), false, null);
 });
 
+$(document).ready(function () {
+	$('.wysiwyg-upload').val($('.wysiwyg-raw').html());
+});
+
 $('.wysiwyg-raw').blur(function () {
 	$('.wysiwyg-upload').val($('.wysiwyg-raw').html());
 });
