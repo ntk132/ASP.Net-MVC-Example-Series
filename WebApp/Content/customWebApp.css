@@ -24,6 +24,14 @@
 body {
     padding-top: 50px;
     font-family: Calibri;
+    background: #eee;
+}
+
+footer,
+.section {
+    background: var(--background-color);
+    padding: 32px 8px 8px 8px;
+    box-shadow: 4px 4px 4px 0px #ccc, -4px 4px 4px 0px #ccc;
 }
 
 a {

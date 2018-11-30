@@ -1,74 +1,133 @@
 ﻿@model WebApp.Models.Post
 
 <div class="row">
-	<div class="col-md-2">
-		@{
-			var str = Model.PostMetas.Where(m => m.MetaKey == "img_thumbnail").Single();
-			<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
-
-			<div class="author-box">
-				<div class="author-content">
-					<h4>@Html.ActionLink(Model.User.UserName, "Details", "User", new { id = Model.UserID}, null)</h4>
-					<p>@Model.User.Email</p>
-				</div>
-				<div class="author-meta">
-					<p>@Model.User.UserRelease</p>
-					<p>@Model.User.UserBio</p>
-					<p>@Model.User.Url</p>
-				</div>
+	<div class="dynamic-col">
+		<div class="col-sm-2 col-md-2 col-lg-2">
+			<div class="single-left">
+				@{
+					var str = Model.PostMetas.Where(m => m.MetaKey == "img_thumbnail").Single();
+					<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+					<hr />
+					<div class="cata">
+						<span>NTK132(5)</span>
+						<span>NTK132(4)</span>
+						<span>NTK132(10)</span>
+						<span>NTK132(2)</span>
+					</div>
+					<hr />
+					<div class="author-box">
+						<div class="author-content">
+							<h4>@Html.ActionLink(Model.User.UserName, "Details", "User", new { id = Model.UserID }, null)</h4>
+							<p>@Model.User.Email</p>
+						</div>
+						<div class="author-meta">
+							<p>@Model.User.UserRelease</p>
+							<p>@Model.User.UserBio</p>
+							<p>@Model.User.Url</p>
+						</div>
+					</div>
+				}
 			</div>
-		}
-	</div>
-	<div class="col-md-8">
-		<div class="single post">
-			<div class="post-header">
-				<h3>@Html.DisplayFor(model => model.PostTitle)</h3>
-			</div>
-			<div class="post-meta">
-				<p>
-					@Html.DisplayFor(model => model.User.UserName) |
-					@Html.DisplayFor(model => model.PostRelease) |
-					@Html.DisplayFor(model => model.CommentCount) Comments
-				</p>
-			</div>
-
-			<div class="post-content">
-				<div id="post-hid">@Html.Raw(Model.PostContent)</div>
-				<div id="post-txt"></div>
-			</div>
+			<br />
 		</div>
+		<div class="col-sm-8 col-md-8 col-lg-8">
+			<div class="single">
+				<div class="post">
+					<div class="post-header">
+						<h3>@Html.DisplayFor(model => model.PostTitle)</h3>
+					</div>
+					<div class="post-meta">
+						<p>
+							@Html.DisplayFor(model => model.User.UserName) |
+							@Html.DisplayFor(model => model.PostRelease) |
+							@Html.DisplayFor(model => model.CommentCount) Comments
+						</p>
+					</div>
 
-		<div class="comment-area">
-			@{
-				// If this post allow post comment into this post
-				// then show the comment-flow and comment form
-				if (Model.CommentStatus == WebApp.Models.CommentStatus.Open)
-				{
-					foreach (var comment in Model.Comments)
-					{
-						Html.RenderPartial("_CommentForm", comment);
+					<div class="post-content">
+						<div id="post-hid">@Html.Raw(Model.PostContent)</div>
+						<div id="post-txt"></div>
+					</div>
+				</div>
+				<hr />
+				<div class="comment-area">
+					@{
+						// If this post allow post comment into this post
+						// then show the comment-flow and comment form
+						if (Model.CommentStatus == WebApp.Models.CommentStatus.Open)
+						{
+							foreach (var comment in Model.Comments)
+							{
+								Html.RenderPartial("_CommentForm", comment);
+							}
+
+							<div class="comment-option">
+								<button class="btn-comment-reply">Reply</button>
+							</div>
+
+							<h4>Leave a comment</h4>
+							Html.RenderPartial("_CommentFormNone");
+						}
+						else
+						{
+							<div class="comment-lock">
+								<h3>The comment is disable for this post!</h3>								
+							</div>
+						}
 					}
-
-					<div class="comment-option">
-						<button class="btn-comment-reply">Reply</button>
-					</div>
-
-					<h4>Leave a comment</h4>
-					Html.RenderPartial("_CommentFormNone");
-				}
-				else
-				{
-					<div class="comment-lock">
-						<h3>The comment is disable for this post!</h3>
-					</div>
-				}
-			}
+				</div>
+			</div>
+			<br />
 		</div>
 	</div>
-	<div class="col-md-2">
-		<div class="news">
-			<h4 class="news-header">Top 5 Lasted Posts</h4>
+
+	<div class="col-sm-2 col-md-2 col-lg-2">
+		<div class="single-right">
+			<div class="news" style="text-align:center;">
+				<h4 class="news-header">Top 5 Lasted Posts</h4>
+
+				<div class="">
+					<hr />
+					<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+					<h4>@Html.DisplayFor(model => model.PostTitle)</h4>
+					<p>@Html.DisplayFor(model => model.User.UserName)</p>
+					<p>@Html.DisplayFor(model => model.PostRelease)</p>
+				</div>
+
+				<div class="">
+					<hr />
+					<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+					<h4>@Html.DisplayFor(model => model.PostTitle)</h4>
+					<p>@Html.DisplayFor(model => model.User.UserName)</p>
+					<p>@Html.DisplayFor(model => model.PostRelease)</p>
+				</div>
+
+				<div class="">
+					<hr />
+					<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+					<h4>@Html.DisplayFor(model => model.PostTitle)</h4>
+					<p>@Html.DisplayFor(model => model.User.UserName)</p>
+					<p>@Html.DisplayFor(model => model.PostRelease)</p>
+				</div>
+
+				<div class="">
+					<hr />
+					<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+					<h4>@Html.DisplayFor(model => model.PostTitle)</h4>
+					<p>@Html.DisplayFor(model => model.User.UserName)</p>
+					<p>@Html.DisplayFor(model => model.PostRelease)</p>
+				</div>
+
+				<div class="">
+					<hr />
+					<img class="single-post-img" src="@str.MetaValue" alt="" style="width:100%;" />
+					<h4>@Html.DisplayFor(model => model.PostTitle)</h4>
+					<p>@Html.DisplayFor(model => model.User.UserName)</p>
+					<p>@Html.DisplayFor(model => model.PostRelease)</p>
+				</div>
+			</div>
 		</div>
+		<br />
 	</div>
 </div>
 

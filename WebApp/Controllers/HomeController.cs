@@ -10,7 +10,7 @@ namespace WebApp.Controllers
     {
         public ActionResult Index()
         {
-            bool log = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            /*bool log = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
             if (log)
             {
@@ -19,7 +19,9 @@ namespace WebApp.Controllers
             else
             {
                 return RedirectToAction("Login");
-            }            
+            }*/
+
+            return View();
         }
 
         public ActionResult About()

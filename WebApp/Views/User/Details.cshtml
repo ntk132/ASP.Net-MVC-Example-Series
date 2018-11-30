@@ -5,20 +5,23 @@
 }
 
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="author">
 			<div class="author-ava">
-				@{ 
+				@{
 					var str = Model.UserMetas.Where(m => m.MetaKey == "avatar").Single();
 					string src = (str.MetaValue.ToString() != "" ? str.MetaValue.ToString() : "/Images/Avatar/non.jpg");
 				}
-				<img src="@src"/>
+				<img src="@src" />
 			</div>
 			<div class="author-content">
 				<h4>@Model.UserName</h4>
 				<p>@Model.UserRelease</p>
 				<p>@Model.UserBio</p>
 				<p>@Model.Url</p>
+				
+				<hr />
+
 				@{
 					if (Model.Links != null || Model.Links != "")
 					{
@@ -29,36 +32,36 @@
 
 						if (result[0] != null && result[0] != "")
 						{
-							<p class="links fb"><a href="@result[0]"><i class="fa fa-facebook"></i></a></p>
+							<span class="links fb"><a href="@result[0]"><i class="fa fa-facebook"></i></a></span>
 						}
 						if (result[1] != null && result[1] != "")
 						{
-							<p class="links yt"><a href="@result[1]"><i class="fa fa-youtube"></i></a></p>
+							<span class="links yt"><a href="@result[1]"><i class="fa fa-youtube"></i></a></span>
 						}
 						if (result[2] != null && result[2] != "")
 						{
-							<p class="links ins"><a href="@result[2]"><i class="fa fa-instagram"></i></a></p>
+							<span class="links ins"><a href="@result[2]"><i class="fa fa-instagram"></i></a></span>
 						}
 						if (result[3] != null && result[3] != "")
 						{
-							<p class="links web"><a href="@result[3]"><i class="fa fa-globe"></i></a></p>
+							<span class="links web"><a href="@result[3]"><i class="fa fa-globe"></i></a></span>
 						}
 					}
 				}
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-		<h3>List of posts</h3>
 
-		@foreach (var post in Model.Posts)
-		{
+	<h3>List of posts</h3>
+
+	@foreach (var post in Model.Posts)
+	{
+		<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
 			<h4>@Html.ActionLink(post.PostTitle, "Details", "Post", new { id = post.PostID }, null)</h4>
 			<p>@post.PostRelease | @post.Comments commetns | @post.PostStatus</p>
-		}
-	</div>
+		</div>
+	}
 </div>
-
 <p>
 	@Html.ActionLink("Back to List", "Index")
 </p>

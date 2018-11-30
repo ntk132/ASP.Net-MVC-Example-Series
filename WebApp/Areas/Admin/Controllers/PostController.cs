@@ -107,17 +107,26 @@ namespace WebApp.Areas.Admin.Controllers
                     post.PostContent.Replace("\n", "<br />");
                     post.User = db.Users.Where(u => u.UserID == post.UserID).Single();
 
+                    // Store post to DB
                     db.Posts.Add(post);
                     db.SaveChanges();
 
-                    //
+                    // Prepare PostMeta's values
                     postMeta.PostID = post.PostID;
                     postMeta.MetaKey = "img_thumbnail";
                     postMeta.MetaValue = thumbnail;
 
+                    // Store PostMeta to DB
                     db.PostMetas.Add(postMeta);
                     db.SaveChanges();
 
+                    // Prepare Post's terms
+
+
+                    // Store Terms to DB
+
+
+                    // Direct to Edit page follow this Post's ID
                     return RedirectToAction("Edit", new { id = post.PostID });
                 }
             }

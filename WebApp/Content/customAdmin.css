@@ -92,6 +92,7 @@
     position: fixed;
     height: 100%;
     box-shadow: 0 0 white, 0 0 white, 10px -15px 10px -5px #ccc, 0 0 white;
+    background: var(--background-color);
     opacity: 0.85;
 }
 
@@ -185,6 +186,11 @@ a.entered,
     background: var(--background-color);
     box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
     margin: 10px;
+}
+.tab-half {
+    width: 50%;
+    position:relative;
+    float:left;
 }
 
 input[type="submit"] {
